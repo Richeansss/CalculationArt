@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #2c4d55;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.colculationart.HelloController">
+   <children>
+      <AnchorPane layoutY="75.0" prefHeight="326.0" prefWidth="700.0" style="-fx-background-color: #26252d;">
+         <children>
+            <Button fx:id="myButton" layoutX="251.0" layoutY="260.0" mnemonicParsing="false" onAction="#displayImage" prefHeight="30.0" prefWidth="168.0" style="-fx-background-color: #2c4d55;" text="Показать персонажа" textFill="WHITE">
+               <font>
+                  <Font name="Eras Medium ITC" size="14.0" />
+               </font>
+            </Button>
+            <ChoiceBox fx:id="ChoiceCharacterStatusBox" layoutX="464.0" layoutY="46.0" prefHeight="25.0" prefWidth="194.0" />
+            <Label layoutX="464.0" layoutY="16.0" text="Персонаж" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="CharcterView" fitHeight="128.0" fitWidth="128.0" layoutX="99.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/2.png" />
+               </image></ImageView>
+            <Label fx:id="Testlable" layoutX="450.0" layoutY="163.0" prefHeight="17.0" prefWidth="137.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font name="Bodoni MT" size="24.0" />
+               </font>
+            </Label>
+            <Text fill="WHITE" layoutX="37.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Часы" wrappingWidth="48.13671875">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="16.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="142.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Кубок" wrappingWidth="48.13671875">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="16.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="242.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Шапка" wrappingWidth="59.13671875">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="16.0" />
+               </font>
+            </Text>
+            <Label fx:id="WhachLable" alignment="CENTER" layoutX="12.0" layoutY="223.0" prefHeight="30.0" prefWidth="89.0" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Tahoma" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="GobletLable" alignment="CENTER" layoutX="111.0" layoutY="223.0" prefHeight="30.0" prefWidth="103.0" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Tahoma" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="HatLabel" alignment="CENTER" layoutX="208.0" layoutY="223.0" prefHeight="30.0" prefWidth="126.0" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Tahoma" size="14.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="ArtUiLabel" fitHeight="64.0" fitWidth="64.0" layoutX="178.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="251.0" layoutY="14.0" text="Calculation Art" textFill="WHITE">
+         <font>
+            <Font name="Niagara Solid" size="57.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
