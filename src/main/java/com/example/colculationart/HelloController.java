@@ -2,13 +2,21 @@ package com.example.colculationart;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.Stack;
 
 
 public class HelloController {
@@ -23,7 +31,7 @@ public class HelloController {
     private Label HatLabel;
 
     @FXML
-    private ChoiceBox<String> ChoiceCharacterStatusBox;
+    private ComboBox<String> ChoiceCharacterStatusBox;
 
     @FXML
     ImageView CharcterView;
@@ -34,18 +42,35 @@ public class HelloController {
     @FXML
     private Label Testlable;
 
-    Image Ui_Alhaitham = new Image("file:///C:/Users/Алексей/IdeaProjects/Colculationart/src/main/resources/com/example/colculationart/image/1_Alhaitham.png");
+    //public void displayImage(){
+    //
+   // }
 
     private final String[] Character = {"Аль-Хайтам", "Альбедо", "Аяка", "Аято", "Венти", "Гань Юй", "Джин", "Дилюк", "Дэхья", "Е Лань", "Ёимия", "Итто", "Кадзуха", "Кли", "Кокоми", "Кэ Цин", "ГГ (Анемо)", "ГГ (Гео)", "ГГ (Электро)", "ГГ (Дендро)", "Мона", "Нахида", "Нилу", "Райдэн", "Сайно", "Странник", "Сяо", "Тарталья", "Тигнари", "Ху Тао", "Ци Ци", "Чжун Ли", "Шань Хэ", "Элой", "Эола", "Яэ Мико", "Барбара", "Беннет", "Бэй Доу", "Горо", "Диона", "Дори", "Кандакия", "Коллеи", "Кэйа", "Лайла", "Лиза", "Мика", "Нин Гуан", "Ноэлль", "Розария", "Рейзор", "Сара", "Сахароза", "Саю", "Син Цю", "Синобу", "Синь Янь", "Сян Лин", "Тома", "Фарузан", "Фишель", "Хейдзо", "Чун Юнь", "Эмбер", "Юнь Цзинь", "Янь Фей", "Яо Яо"};
     @FXML
     private void initialize(){
         ChoiceCharacterStatusBox.getItems().addAll(Character);
         ChoiceCharacterStatusBox.setOnAction(this::getCharacter);
+        myButton.setOnAction(event -> {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Art-view.fxml"));
+
+            myButton.getScene().getWindow().hide();
+
+            try {
+                loader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+
+            Parent root = loader.getRoot();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+        });
     }
 
-    public void displayImage(){
-       CharcterView.setImage(Ui_Alhaitham);
-    }
     public void getCharacter(ActionEvent event) {
         ArrayList<Character> CharacterList = new ArrayList<>();
         Character Alhaitham = new Character(1, 214, new int[]{7,15,20,7,8,9,10,4}).addToList(CharacterList);
@@ -334,6 +359,7 @@ public class HelloController {
     }
 
 
+
     public void DisplayUiLabel(Character chrctr){
         HashMap<Integer, String> CharacterName = UiMap.GetUiMap();
         HashMap<Integer, String> ArtName = UiMap.GetArtNameMap();
@@ -346,10 +372,4 @@ public class HelloController {
         HatLabel.setText(ArtStatName.get(chrctr.arr_i_bst_chr_art_stats[3]));
     }
 
-    private static void measureTime(Runnable task) {
-        long startTime = System.currentTimeMillis();
-        task.run();
-        long elapsed = System.currentTimeMillis() - startTime;
-        System.out.println("Затраченное время: " + elapsed + " ms");
-    }
 }
