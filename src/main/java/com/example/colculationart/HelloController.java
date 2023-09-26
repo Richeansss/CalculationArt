@@ -30,6 +30,9 @@ public class HelloController {
     @FXML
     private Label HatLabel;
 
+
+
+
     @FXML
     private ComboBox<String> ChoiceCharacterStatusBox;
 
@@ -358,8 +361,6 @@ public class HelloController {
         }
     }
 
-
-
     public void DisplayUiLabel(Character chrctr){
         HashMap<Integer, String> CharacterName = UiMap.GetUiMap();
         HashMap<Integer, String> ArtName = UiMap.GetArtNameMap();
@@ -371,5 +372,4 @@ public class HelloController {
         GobletLable.setText(ArtStatName.get(chrctr.arr_i_bst_chr_art_stats[2]));
         HatLabel.setText(ArtStatName.get(chrctr.arr_i_bst_chr_art_stats[3]));
     }
-
 }
