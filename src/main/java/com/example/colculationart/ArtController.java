@@ -2,25 +2,15 @@ package com.example.colculationart;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Bounds;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
-import javafx.stage.PopupWindow;
 import javafx.util.StringConverter;
 
-import java.security.cert.PolicyNode;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 
 public class ArtController {
 
-    @FXML
-    private Button myButton;
 
     @FXML
     private Slider slider;
@@ -30,8 +20,7 @@ public class ArtController {
 
     @FXML
     private Tooltip tooltip;
-    @FXML
-    private Line progressLine;
+
     @FXML
     void displayImage(ActionEvent event) {
 
@@ -51,7 +40,7 @@ public class ArtController {
 
 
         for (int i = 0; i < validValues.size(); i++) {
-            slider.setLabelFormatter(new StringConverter<Double>() {
+            slider.setLabelFormatter(new StringConverter<>() {
                 @Override
                 public String toString(Double value) {
                     return String.valueOf(validValues.get(value.intValue()));
@@ -80,7 +69,6 @@ public class ArtController {
             }
         });
 
-        Tooltip tooltip = new Tooltip();
         slider.valueProperty().addListener((observable, oldValue, newValue) -> {
             int index = newValue.intValue();
             tooltip.setText(String.valueOf(validValues.get(index)));

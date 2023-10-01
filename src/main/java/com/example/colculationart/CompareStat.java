@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class CompareStat {
     public static ArrayList<Integer> getWhach(ArrayList<Character> CharacterList, int[] ArtStat){
-        ArrayList<Integer> SuitableList = new ArrayList<Integer>();
+        ArrayList<Integer> SuitableList = new ArrayList<>();
         for(int i=0; i < CharacterList.size();i++){
             //System.out.println(CharacterList.size());
             if(CharacterList.get(i).arr_i_bst_chr_art_stats[0] == ArtStat[0]){
@@ -27,7 +27,7 @@ public class CompareStat {
         return SuitableList;
     }
     public static ArrayList<Integer> getGoblet(ArrayList<Character> CharacterList, int[] ArtStat){
-        ArrayList<Integer> SuitableList = new ArrayList<Integer>();
+        ArrayList<Integer> SuitableList = new ArrayList<>();
         for(int i=0; i < CharacterList.size();i++){
             //System.out.println(CharacterList.size());
             if(CharacterList.get(i).arr_i_bst_chr_art_stats[0] == ArtStat[0]){
@@ -37,7 +37,7 @@ public class CompareStat {
         return SuitableList;
     }
     public static ArrayList<Integer> getHat(ArrayList<Character> CharacterList, int[] ArtStat){
-        ArrayList<Integer> SuitableList = new ArrayList<Integer>();
+        ArrayList<Integer> SuitableList = new ArrayList<>();
         for(int i=0; i < CharacterList.size();i++){
             //System.out.println(CharacterList.size());
             if(CharacterList.get(i).arr_i_bst_chr_art_stats[0] == ArtStat[0]){

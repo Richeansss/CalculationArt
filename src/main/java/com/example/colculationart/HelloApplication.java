@@ -12,8 +12,10 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader CharacterLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
 
-        Scene CharacterScene = new Scene(CharacterLoader.load(), 700, 400);
+        Scene CharacterScene = new Scene(CharacterLoader.load(), 854 , 480);
         stage.setTitle("Calculation Art");
+        stage.setMinWidth(300);
+        stage.setMinHeight(300);
         stage.setScene(CharacterScene);
         stage.show();
     }

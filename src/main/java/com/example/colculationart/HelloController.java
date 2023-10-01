@@ -3,6 +3,7 @@ package com.example.colculationart;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,12 +12,15 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Stack;
+import java.util.concurrent.CompletableFuture;
 
 
 public class HelloController {
@@ -55,22 +59,16 @@ public class HelloController {
         ChoiceCharacterStatusBox.getItems().addAll(Character);
         ChoiceCharacterStatusBox.setOnAction(this::getCharacter);
         myButton.setOnAction(event -> {
-
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Art-view.fxml"));
-
-            myButton.getScene().getWindow().hide();
-
             try {
-                loader.load();
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                primaryStage.setScene(scene);
+                primaryStage.show();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
-
-            Parent root = loader.getRoot();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.showAndWait();
         });
     }
 
