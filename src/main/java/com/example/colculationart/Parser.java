@@ -112,8 +112,7 @@ public class Parser {
                             tableText.contains("Replacement Weapons")) {
                         // Запись содержимого таблицы в файл
                         for (Element row : table.select("tr")) {
-                            Elements rowCells = row.select("td, th");
-                            for (Element cell : rowCells) {
+                            for (Element cell : row.select("td, th")) {
                                 String cellText = cell.text();
                                 writer.write(cellText);
                                 writer.write("\t");
@@ -132,6 +131,8 @@ public class Parser {
 
                 // Закрываем файл
                 writer.close();
+
+                DataBaseHandler.InsertToDB(characterName);
 
                 System.out.println("Таблицы и их заголовки успешно сохранены в файл: " + outputFilePath);
             } catch (IOException e) {
