@@ -2,9 +2,10 @@ package com.example.colculationart;
 
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class  UiMap {
-    public static HashMap GetUiMap(){
+    public static HashMap<Integer, String> getUiMap(){
         HashMap<Integer, String> UiBelongCharacterName = new HashMap<>();
         UiBelongCharacterName.put(1, "1_Alhaitham");
         UiBelongCharacterName.put(2, "2_Albedo");
@@ -76,7 +77,7 @@ public class  UiMap {
         UiBelongCharacterName.put(68,"68_Yaoyao");
     return UiBelongCharacterName;
     }
-    public static HashMap GetArtNameMap(){
+    public static HashMap<Integer, String> getArtNameMap(){
         HashMap<Integer, String> UiBelongArtName = new HashMap<>();
         UiBelongArtName.put(201, "201_adventurer");
         UiBelongArtName.put(202, "202_archaic_petra");
@@ -125,7 +126,7 @@ public class  UiMap {
         UiBelongArtName.put(420 ,"POKAHZ");
         return UiBelongArtName;
     }
-    public static HashMap GetArtStatMap(){
+    public static HashMap<Integer, String> GetArtStatMap(){
         HashMap<Integer, String> ArtStatName = new HashMap<>();
         ArtStatName.put(1, "HP");
         ArtStatName.put(2, "HP%");
@@ -167,5 +168,84 @@ public class  UiMap {
         ArtStatName.put(43 ,"АТК% или ДЕФ%");
         ArtStatName.put(44 ,"КШ% или Healing Bonus");
         return ArtStatName;
+    }
+
+    public static HashMap<String, String> getCharactersID(){
+        HashMap<String, String> characterIDs = new HashMap<>();
+        characterIDs.put("312182", "Albedo");
+        characterIDs.put("383712", "Alhaitham");
+        characterIDs.put("337957", "Aloy");
+        characterIDs.put("297535", "Amber");
+        characterIDs.put("345514", "Ayato");
+        characterIDs.put("314348", "Baizhu");
+        characterIDs.put("297517", "Barbara");
+        characterIDs.put("297528", "Beidou");
+        characterIDs.put("297522", "Bennett");
+        characterIDs.put("386384", "Candace");
+        characterIDs.put("297532", "Chongyun");
+        characterIDs.put("382079", "Collei");
+        characterIDs.put("315233", "Cyno");
+        characterIDs.put("383716", "Dehya");
+        characterIDs.put("297518", "Diluc");
+        characterIDs.put("305872", "Diona");
+        characterIDs.put("380569", "Dori");
+        characterIDs.put("328764", "Eula");
+        characterIDs.put("391897", "Faruzan");
+        characterIDs.put("297524", "Fischl");
+        characterIDs.put("417207", "Freminet");
+        characterIDs.put("312173", "Ganyu");
+        characterIDs.put("336726", "Gorou");
+        characterIDs.put("345516", "Heizou");
+        characterIDs.put("314347", "Hu Tao");
+        characterIDs.put("345461", "Itto");
+        characterIDs.put("297536", "Jean");
+        characterIDs.put("297516", "Kaeya");
+        characterIDs.put("386489", "Kaveh");
+        characterIDs.put("332826", "Kazuha");
+        characterIDs.put("297534", "Keqing");
+        characterIDs.put("409556", "Kirara");
+        characterIDs.put("297521", "Klee");
+        characterIDs.put("337140", "Kokomi");
+        characterIDs.put("386486", "Layla");
+        characterIDs.put("297515", "Lisa");
+        characterIDs.put("345879", "Lynette");
+        characterIDs.put("345540", "Lyney");
+        characterIDs.put("390096", "Mika");
+        characterIDs.put("297526", "Mona");
+        characterIDs.put("383713", "Nahida");
+        characterIDs.put("383715", "Nilou");
+        characterIDs.put("297529", "Ningguang");
+        characterIDs.put("297523", "Noelle");
+        characterIDs.put("297533", "Qiqi");
+        characterIDs.put("337161", "Raiden");
+        characterIDs.put("297519", "Razor");
+        characterIDs.put("314177", "Rosaria");
+        characterIDs.put("336727", "Sara");
+        characterIDs.put("333496", "Sayu");
+        characterIDs.put("346620", "Shenhe");
+        characterIDs.put("346199", "Shinobu");
+        characterIDs.put("297525", "Sucrose");
+        characterIDs.put("305862", "Tartaglia");
+        characterIDs.put("337141", "Thoma");
+        characterIDs.put("382082", "Tighnari");
+        characterIDs.put("297537", "Traveler (Anemo)");
+        characterIDs.put("381807", "Traveler (Dendro)");
+        characterIDs.put("336865", "Traveler (Electro)");
+        characterIDs.put("297538", "Traveler (Geo)");
+        characterIDs.put("416602", "Traveler (Hydro)");
+        characterIDs.put("297520", "Venti");
+        characterIDs.put("309656", "Wanderer");
+        characterIDs.put("297530", "Xiangling");
+        characterIDs.put("297527", "Xiao");
+        characterIDs.put("297531", "Xingqiu");
+        characterIDs.put("305873", "Xinyan");
+        characterIDs.put("327533", "Yae Miko");
+        characterIDs.put("328765", "Yanfei");
+        characterIDs.put("314174", "Yaoyao");
+        characterIDs.put("372781", "Yelan");
+        characterIDs.put("333497", "Yoimiya");
+        characterIDs.put("314345", "Yun Jin");
+        characterIDs.put("305858", "Zhongli");
+        return characterIDs;
     }
 }

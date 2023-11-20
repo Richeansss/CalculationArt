@@ -360,8 +360,8 @@ public class HelloController {
     }
 
     public void DisplayUiLabel(Character chrctr){
-        HashMap<Integer, String> CharacterName = UiMap.GetUiMap();
-        HashMap<Integer, String> ArtName = UiMap.GetArtNameMap();
+        HashMap<Integer, String> CharacterName = UiMap.getUiMap();
+        HashMap<Integer, String> ArtName = UiMap.getArtNameMap();
         HashMap<Integer, String> ArtStatName = UiMap.GetArtStatMap();
         CharcterView.setImage(UiImaga.GetCharacter(CharacterName.get(chrctr.id_chr_name)));
         ArtUiLabel.setImage(UiImaga.GetArt(ArtName.get(chrctr.id_main_set)));
