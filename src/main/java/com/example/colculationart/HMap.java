@@ -4,7 +4,7 @@ package com.example.colculationart;
 import java.util.HashMap;
 import java.util.Map;
 
-public class  UiMap {
+public class  HMap {
     public static HashMap<Integer, String> getUiMap(){
         HashMap<Integer, String> UiBelongCharacterName = new HashMap<>();
         UiBelongCharacterName.put(1, "1_Alhaitham");
@@ -77,53 +77,48 @@ public class  UiMap {
         UiBelongCharacterName.put(68,"68_Yaoyao");
     return UiBelongCharacterName;
     }
-    public static HashMap<Integer, String> getArtNameMap(){
-        HashMap<Integer, String> UiBelongArtName = new HashMap<>();
-        UiBelongArtName.put(201, "201_adventurer");
-        UiBelongArtName.put(202, "202_archaic_petra");
-        UiBelongArtName.put(203,"203_berserker");
-        UiBelongArtName.put(204,"204_blizzard_strayer");
-        UiBelongArtName.put(205,"205_bloodstained_chivalry");
-        UiBelongArtName.put(206,"206_brave_heart");
-        UiBelongArtName.put(207,"207_crimson_witch_of_flames");
-        UiBelongArtName.put(208,"208_deepwood_memories");
-        UiBelongArtName.put(209, "209_defenders_will");
-        UiBelongArtName.put(210,"210_echoes_of_an_offering");
-        UiBelongArtName.put(211,"211_desert_pavilion_chronicle");
-        UiBelongArtName.put(212,"212_emblem_of_severed_fate");
-        UiBelongArtName.put(213,"213_flower_of_paradise_lost");
-        UiBelongArtName.put(214,"214_gilded_dreams");
-        UiBelongArtName.put(215,"215_gambler");
-        UiBelongArtName.put(216,"216_gladiators_finale");
-        UiBelongArtName.put(217,"217_thundering_fury");
-        UiBelongArtName.put(218,"218_heart_of_depth");
-        UiBelongArtName.put(219,"219_husk_of_opulent_dreams");
-        UiBelongArtName.put(220,"220_lavawalker");
-        UiBelongArtName.put(221,"221_wanderers_troupe");
-        UiBelongArtName.put(222,"222_tenacity_of_the_millelith");
-        UiBelongArtName.put(223,"223_instructor");
-        UiBelongArtName.put(224,"224_lucky_dog");
-        UiBelongArtName.put(225,"225_maiden_beloved");
-        UiBelongArtName.put(226,"226_martial_artist");
-        UiBelongArtName.put(227,"227_noblesse_oblige");
-        UiBelongArtName.put(228,"228_oceanhued_clam");
-        UiBelongArtName.put(229,"229_pale_flame");
-        UiBelongArtName.put(230,"230_thundersoother");
-        UiBelongArtName.put(231,"231_viridescent_venerer");
-        UiBelongArtName.put(232,"232_tiny_miracle");
-        UiBelongArtName.put(233,"233_vermillion_hereafter");
-        UiBelongArtName.put(234,"234_retracing_bolide");
-        UiBelongArtName.put(235,"235_shimenawas_reminiscence");
-        UiBelongArtName.put(236,"236_the_exile");
-        UiBelongArtName.put(237,"237_resolution_of_sojourner");
-        UiBelongArtName.put(447,"POKAHZ");
-        UiBelongArtName.put(881 ,"POKAHZ");
-        UiBelongArtName.put(429 ,"POKAHZ");
-        UiBelongArtName.put(451 ,"POKAHZ");
-        UiBelongArtName.put(425 ,"POKAHZ");
-        UiBelongArtName.put(433 ,"POKAHZ");
-        UiBelongArtName.put(434 ,"POKAHZ");
-        UiBelongArtName.put(420 ,"POKAHZ");
+    public static HashMap<String, String> getArtNameMap(){
+        HashMap<String, String> UiBelongArtName = new HashMap<>();
+        UiBelongArtName.put("Adventurer", "adventurer");
+        UiBelongArtName.put("Archaic_petra", "archaic_petra");
+        UiBelongArtName.put("Berserker","berserker");
+        UiBelongArtName.put("Blizzard Strayer","blizzard_strayer");
+        UiBelongArtName.put("Bloodstained Chivalry","bloodstained_chivalry");
+        UiBelongArtName.put("Brave Heart","brave_heart");
+        UiBelongArtName.put("Crimson Witch of flames","crimson_witch_of_flames");
+        UiBelongArtName.put("Deepwood Memories","deepwood_memories");
+        UiBelongArtName.put("Defenders Will", "defenders_will");
+        UiBelongArtName.put("Echoes of an Offering","echoes_of_an_offering");
+        UiBelongArtName.put("Desert Pavilion Chronicle","desert_pavilion_chronicle");
+        UiBelongArtName.put("Emblem of Severed Fate","emblem_of_severed_fate");
+        UiBelongArtName.put("Flower of Paradise Lost","flower_of_paradise_lost");
+        UiBelongArtName.put("Gilded Dreams","gilded_dreams");
+        UiBelongArtName.put("Gambler","gambler");
+        UiBelongArtName.put("Gladiators Finale","gladiators_finale");
+        UiBelongArtName.put("Thundering Fury","thundering_fury");
+        UiBelongArtName.put("Heart of Depth","heart_of_depth");
+        UiBelongArtName.put("Husk of Opulent Dreams","husk_of_opulent_dreams");
+        UiBelongArtName.put("Lavawalker","lavawalker");
+        UiBelongArtName.put("Wanderers Troupe","wanderers_troupe");
+        UiBelongArtName.put("Tenacity of the Millelith","tenacity_of_the_millelith");
+        UiBelongArtName.put("Instructor","instructor");
+        UiBelongArtName.put("Lucky Dog","lucky_dog");
+        UiBelongArtName.put("Maiden Beloved","maiden_beloved");
+        UiBelongArtName.put("Martial Artist","martial_artist");
+        UiBelongArtName.put("Noblesse Oblige","noblesse_oblige");
+        UiBelongArtName.put("Oceanhued Clam","oceanhued_clam");
+        UiBelongArtName.put("Pale Flame","pale_flame");
+        UiBelongArtName.put("Thundersoother","thundersoother");
+        UiBelongArtName.put("Viridescent Venerer","viridescent_venerer");
+        UiBelongArtName.put("Tiny Miracle","tiny_miracle");
+        UiBelongArtName.put("Vermillion Hereafter","vermillion_hereafter");
+        UiBelongArtName.put("Retracing Bolide","retracing_bolide");
+        UiBelongArtName.put("Shimenawa's Reminiscence", "shimenawas_reminiscence");
+        UiBelongArtName.put("The Exile", "the_exile");
+        UiBelongArtName.put("Resolution of Sojourner", "resolution_of_sojourner");
+        UiBelongArtName.put("Marechaussee Hunter", "marechaussee_hunter");
+        UiBelongArtName.put("Golden Troupe", "golden_troupe");
+
         return UiBelongArtName;
     }
     public static HashMap<Integer, String> GetArtStatMap(){
@@ -246,6 +241,11 @@ public class  UiMap {
         characterIDs.put("333497", "Yoimiya");
         characterIDs.put("314345", "Yun Jin");
         characterIDs.put("305858", "Zhongli");
+        characterIDs.put("Wriothesley-Best-Builds", "Wriothesley");
+        characterIDs.put("Neuvillette-Best-Builds", "Neuvillette");
+        characterIDs.put("Furina-Best-Builds", "Furina");
+        characterIDs.put("Furina-Best-Builds", "Furina");
+        characterIDs.put("412428", "Charlotte");
         return characterIDs;
     }
 }

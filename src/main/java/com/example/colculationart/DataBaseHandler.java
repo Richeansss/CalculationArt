@@ -8,7 +8,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.ResultSet;
+
 
 
 public class DataBaseHandler {
@@ -334,7 +334,7 @@ public class DataBaseHandler {
                 // Закрываем ресурсы
                 reader.close();
 
-                executeQuery(getConnection(), "Sands");
+                //executeQuery(getConnection(), "Sands");
 
                 System.out.println("Данные успешно записаны в базу данных.");
 
@@ -360,25 +360,25 @@ public class DataBaseHandler {
         return DriverManager.getConnection(url, username, password);
     }
 
-    public static void executeQuery(Connection connection, String MainStat) throws SQLException {
+    public static void executeQuery(Connection connection, String artifactType, String bestArtifact, String mainStat, String subStat1, String subStat2, String subStat3, String subStat4) throws SQLException {
 //--------------------------------------------(1 set 1 mainstat 4 substat) -----------------------------------------------------------------//
         // Создаем таблицу PerfectArt, если она не существует
         String createTablePerfect = "CREATE TABLE IF NOT EXISTS PerfectArt AS " +
                 "SELECT DISTINCT * FROM Heroes " +
                 "WHERE BestArtifacts LIKE ? " +
-                "AND " + MainStat + " LIKE ? " +
+                "AND " + artifactType + " LIKE ? " +
                 "AND Substats LIKE ? " +
                 "AND Substats LIKE ? " +
                 "AND Substats LIKE ? " +
                 "AND Substats LIKE ?";
 
         PreparedStatement createTableStatement = connection.prepareStatement(createTablePerfect);
-        createTableStatement.setString(1, "%Noblesse Oblige%");
-        createTableStatement.setString(2, "%ATK%%");
-        createTableStatement.setString(3, "%CRIT DMG%");
-        createTableStatement.setString(4, "%ATK%%");
-        createTableStatement.setString(5, "%CRIT RATE%");
-        createTableStatement.setString(6, "%Energy Recharge%");
+        createTableStatement.setString(1, "%" + bestArtifact + "%");
+        createTableStatement.setString(2, "%" + mainStat + "%");
+        createTableStatement.setString(3, "%" + subStat1 + "%");
+        createTableStatement.setString(4, "%" + subStat2 + "%");
+        createTableStatement.setString(5, "%" + subStat3 + "%");
+        createTableStatement.setString(6, "%" + subStat4 + "%");
 
         createTableStatement.executeUpdate(); // Создаем таблицу
 
@@ -387,7 +387,7 @@ public class DataBaseHandler {
         String createTableCompatibility = "CREATE TABLE IF NOT EXISTS Compatibility AS " +
                 "SELECT DISTINCT * FROM Heroes " +
                 "WHERE BestArtifacts LIKE ? " +
-                "AND " + MainStat + " LIKE ? " +
+                "AND " + artifactType + " LIKE ? " +
                 "AND (" +
                 "(Substats LIKE ? AND Substats LIKE ? AND Substats LIKE ?) OR " +
                 "(Substats LIKE ? AND Substats LIKE ? AND Substats LIKE ?) OR " +
@@ -397,25 +397,25 @@ public class DataBaseHandler {
 
         PreparedStatement createTableCompatibilityStatement = connection.prepareStatement(createTableCompatibility);
         //-----------------------------MainSet----------------------------------------//
-        createTableCompatibilityStatement.setString(1, "%Noblesse Oblige%");
+        createTableCompatibilityStatement.setString(1, "%" + bestArtifact + "%");
         //-----------------------------MainStat----------------------------------------//
-        createTableCompatibilityStatement.setString(2, "%ATK%%");
+        createTableCompatibilityStatement.setString(2, "%" + subStat2 + "%");
         //-----------------------------SubStats----------------------------------------//
-        createTableCompatibilityStatement.setString(3, "%CRIT DMG%");
-        createTableCompatibilityStatement.setString(4, "%ATK%%");
-        createTableCompatibilityStatement.setString(5, "%CRIT RATE%");
+        createTableCompatibilityStatement.setString(3, "%" + subStat1 + "%");
+        createTableCompatibilityStatement.setString(4, "%" + subStat2 + "%");
+        createTableCompatibilityStatement.setString(5, "%" + subStat3 + "%");
         //
-        createTableCompatibilityStatement.setString(6, "%Energy Recharge%");
-        createTableCompatibilityStatement.setString(7, "%ATK%%");
-        createTableCompatibilityStatement.setString(8, "%CRIT RATE%");
+        createTableCompatibilityStatement.setString(6, "%" + subStat4 + "%");
+        createTableCompatibilityStatement.setString(7, "%" + subStat2 + "%");
+        createTableCompatibilityStatement.setString(8, "%" + subStat3 + "%");
         //
-        createTableCompatibilityStatement.setString(9, "%Energy Recharge%");
-        createTableCompatibilityStatement.setString(10, "%CRIT DMG%");
-        createTableCompatibilityStatement.setString(11, "%CRIT RATE%");
+        createTableCompatibilityStatement.setString(9, "%" + subStat4 + "%");
+        createTableCompatibilityStatement.setString(10, "%" + subStat1 + "%");
+        createTableCompatibilityStatement.setString(11, "%" + subStat3 + "%");
         //
-        createTableCompatibilityStatement.setString(12, "%Energy Recharge%");
-        createTableCompatibilityStatement.setString(13, "%ATK%%");
-        createTableCompatibilityStatement.setString(14, "%CRIT DMG%");
+        createTableCompatibilityStatement.setString(12, "%" + subStat4 + "%");
+        createTableCompatibilityStatement.setString(13, "%" + subStat2 + "%");
+        createTableCompatibilityStatement.setString(14, "%" + subStat1 + "%");
 
         createTableCompatibilityStatement.executeUpdate(); // Создаем таблицу
 
@@ -425,7 +425,7 @@ public class DataBaseHandler {
 
         String sqlSelectQuery = "SELECT * FROM Heroes " +
                 "WHERE BestArtifacts LIKE ? " +
-                "AND Sands LIKE ? " +
+                "AND " + artifactType + " LIKE ? " +  // Added space after MainStat
                 "AND (" +
                 "(Substats LIKE ? AND Substats LIKE ?) OR " +
                 "(Substats LIKE ? AND Substats LIKE ?) OR " +
@@ -440,19 +440,19 @@ public class DataBaseHandler {
         try (PreparedStatement CompatibilitypreparedStatement = connection.prepareStatement(sqlInsertQuery)) {
             // Установка параметров
             CompatibilitypreparedStatement.setString(1, "%Noblesse Oblige%");
-            CompatibilitypreparedStatement.setString(2, "%ATK%%");
-            CompatibilitypreparedStatement.setString(3, "%CRIT RATE%");
-            CompatibilitypreparedStatement.setString(4, "%CRIT DMG%");
-            CompatibilitypreparedStatement.setString(5, "%CRIT RATE%");
-            CompatibilitypreparedStatement.setString(6, "%Energy Recharge%");
-            CompatibilitypreparedStatement.setString(7, "%CRIT RATE%");
-            CompatibilitypreparedStatement.setString(8, "%ATK%%");
-            CompatibilitypreparedStatement.setString(9, "%CRIT DMG%");
-            CompatibilitypreparedStatement.setString(10, "%Energy Recharge%");
-            CompatibilitypreparedStatement.setString(11, "%CRIT DMG%");
-            CompatibilitypreparedStatement.setString(12, "%ATK%%");
-            CompatibilitypreparedStatement.setString(13, "%Energy Recharge%");
-            CompatibilitypreparedStatement.setString(14, "%ATK%%");
+            CompatibilitypreparedStatement.setString(2, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement.setString(3, "%" + subStat3 + "%");
+            CompatibilitypreparedStatement.setString(4, "%" + subStat1 + "%");
+            CompatibilitypreparedStatement.setString(5, "%" + subStat3 + "%");
+            CompatibilitypreparedStatement.setString(6, "%" + subStat4 + "%");
+            CompatibilitypreparedStatement.setString(7, "%" + subStat3 + "%");
+            CompatibilitypreparedStatement.setString(8, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement.setString(9, "%" + subStat1 + "%");
+            CompatibilitypreparedStatement.setString(10, "%" + subStat4 + "%");
+            CompatibilitypreparedStatement.setString(11, "%" + subStat1 + "%");
+            CompatibilitypreparedStatement.setString(12, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement.setString(13, "%" + subStat4 + "%");
+            CompatibilitypreparedStatement.setString(14, "%" + subStat2 + "%");
 
             // Выполнение запроса на вставку
             CompatibilitypreparedStatement.executeUpdate();
@@ -462,11 +462,10 @@ public class DataBaseHandler {
 
 
         //--------------------------------------------(1 set 1 mainstat 1 substat) -----------------------------------------------------------------//
-        // Создаем таблицу PerfectArt, если она не существует
         String createTableSoSO = "CREATE TABLE IF NOT EXISTS SoSo AS " +
                 "SELECT DISTINCT * FROM Heroes " +
                 "WHERE BestArtifacts LIKE ? " +
-                "AND " + MainStat + " LIKE ? " +
+                "AND " + artifactType + " LIKE ? " +
                 "AND (" +
                 "Substats LIKE ? " +
                 "OR Substats LIKE ? " +
@@ -476,38 +475,488 @@ public class DataBaseHandler {
 
         PreparedStatement createTableStatementSoSO = connection.prepareStatement(createTableSoSO);
         createTableStatementSoSO.setString(1, "%Noblesse Oblige%");
-        createTableStatementSoSO.setString(2, "%ATK%%");
-        createTableStatementSoSO.setString(3, "%CRIT DMG%");
-        createTableStatementSoSO.setString(4, "%ATK%%");
-        createTableStatementSoSO.setString(5, "%CRIT RATE%");
-        createTableStatementSoSO.setString(6, "%Energy Recharge%");
+        createTableStatementSoSO.setString(2, "%" + subStat2 + "%");
+        createTableStatementSoSO.setString(3, "%" + subStat1 + "%");
+        createTableStatementSoSO.setString(4, "%" + subStat2 + "%");
+        createTableStatementSoSO.setString(5, "%" + subStat3 + "%");
+        createTableStatementSoSO.setString(6, "%" + subStat4 + "%");
 
         createTableStatementSoSO.executeUpdate(); // Создаем таблицу
 
         //--------------------------------------------(0 set 1 mainstat 4 substat) -----------------------------------------------------------------//
 
         String sqlSelectQuery_1 = "SELECT * FROM Heroes " +
-                "WHERE " + MainStat + " LIKE ? " +
+                "WHERE BestArtifacts NOT LIKE ? " +
+                "AND " + artifactType + " LIKE ? " +
                 "AND Substats LIKE ? " +
                 "AND Substats LIKE ? " +
                 "AND Substats LIKE ? " +
                 "AND Substats LIKE ?";
 
-        String sqlInsertQuery_1 = "INSERT INTO SoSo SELECT DISTINCT * FROM (" + sqlSelectQuery_1 + ") AS SelectedHeroes";
+        String sqlInsertQuery_1 = "INSERT INTO Compatibility SELECT DISTINCT * FROM (" + sqlSelectQuery_1 + ") AS SelectedHeroes";
 
         try (PreparedStatement CompatibilitypreparedStatement_1 = connection.prepareStatement(sqlInsertQuery_1)) {
             // Установка параметров
-            CompatibilitypreparedStatement_1.setString(1, "%ATK%%");
-            CompatibilitypreparedStatement_1.setString(2, "%CRIT RATE%");
-            CompatibilitypreparedStatement_1.setString(3, "%CRIT DMG%");
-            CompatibilitypreparedStatement_1.setString(4, "%Energy Recharge%");
-            CompatibilitypreparedStatement_1.setString(5, "%ATK%%");
+            CompatibilitypreparedStatement_1.setString(1, "%Noblesse Oblige%");
+
+            CompatibilitypreparedStatement_1.setString(2, "%" + subStat2 + "%");
+
+            CompatibilitypreparedStatement_1.setString(3, "%" + subStat3 + "%");
+            CompatibilitypreparedStatement_1.setString(4, "%" + subStat1 + "%");
+            CompatibilitypreparedStatement_1.setString(5, "%" + subStat4 + "%");
+            CompatibilitypreparedStatement_1.setString(6, "%" + subStat2 + "%");
 
 
             // Выполнение запроса на вставку
             CompatibilitypreparedStatement_1.executeUpdate();
+
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+
+        //--------------------------------------------(0 set 1 mainstat 3 substat) -----------------------------------------------------------------//
+
+        String sqlSelectQuery_2 = "SELECT * FROM Heroes " +
+                "WHERE BestArtifacts NOT LIKE ? " +
+                "AND " + artifactType + " LIKE ? " +
+                "AND (" +
+                "(Substats LIKE ? AND Substats LIKE ? AND Substats LIKE ?) OR " +
+                "(Substats LIKE ? AND Substats LIKE ? AND Substats LIKE ?) OR " +
+                "(Substats LIKE ? AND Substats LIKE ? AND Substats LIKE ?) OR " +
+                "(Substats LIKE ? AND Substats LIKE ? AND Substats LIKE ?)" +
+                ")";
+
+        String sqlInsertQuery_2 = "INSERT INTO SoSo SELECT DISTINCT * FROM (" + sqlSelectQuery_2 + ") AS SelectedHeroes";
+
+        try (PreparedStatement CompatibilitypreparedStatement_2 = connection.prepareStatement(sqlInsertQuery_2)) {
+            // Установка параметров
+            //-----------------------------Set---------------------------------------------//
+            CompatibilitypreparedStatement_2.setString(1, "%Noblesse Oblige%");
+
+            //-----------------------------MainStat----------------------------------------//
+            CompatibilitypreparedStatement_2.setString(2, "%" + subStat2 + "%");
+            //-----------------------------SubStats----------------------------------------//
+            CompatibilitypreparedStatement_2.setString(3, "%" + subStat1 + "%");
+            CompatibilitypreparedStatement_2.setString(4, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement_2.setString(5, "%" + subStat3 + "%");
+            //
+            CompatibilitypreparedStatement_2.setString(6, "%" + subStat4 + "%");
+            CompatibilitypreparedStatement_2.setString(7, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement_2.setString(8, "%" + subStat3 + "%");
+            //
+            CompatibilitypreparedStatement_2.setString(9, "%" + subStat4 + "%");
+            CompatibilitypreparedStatement_2.setString(10, "%" + subStat1 + "%");
+            CompatibilitypreparedStatement_2.setString(11, "%" + subStat3 + "%");
+            //
+            CompatibilitypreparedStatement_2.setString(12, "%" + subStat4 + "%");
+            CompatibilitypreparedStatement_2.setString(13, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement_2.setString(14, "%" + subStat1 + "%");
+
+            CompatibilitypreparedStatement_2.executeUpdate(); // Создаем таблицу
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        //--------------------------------------------(0 set 1 mainstat 2 substat) -----------------------------------------------------------------//
+
+        String sqlSelectQuery_3 = "SELECT * FROM Heroes " +
+                "WHERE BestArtifacts NOT LIKE ? " +
+                "AND " + artifactType + " LIKE ? " +
+                "AND (" +
+                "(Substats LIKE ? AND Substats LIKE ?) OR " +
+                "(Substats LIKE ? AND Substats LIKE ?) OR " +
+                "(Substats LIKE ? AND Substats LIKE ?) OR " +
+                "(Substats LIKE ? AND Substats LIKE ?) OR " +
+                "(Substats LIKE ? AND Substats LIKE ?) OR " +
+                "(Substats LIKE ? AND Substats LIKE ?)" +
+                ")";
+
+        String sqlInsertQuery_3 = "INSERT INTO SoSo SELECT DISTINCT * FROM (" + sqlSelectQuery_3 + ") AS SelectedHeroes";
+
+        try (PreparedStatement CompatibilitypreparedStatement_3 = connection.prepareStatement(sqlInsertQuery_3)) {
+            // Установка параметров
+            CompatibilitypreparedStatement_3.setString(1, "%Noblesse Oblige%");
+
+            CompatibilitypreparedStatement_3.setString(2, "%" + subStat2 + "%");
+
+            CompatibilitypreparedStatement_3.setString(3, "%" + subStat3 + "%");
+            CompatibilitypreparedStatement_3.setString(4, "%" + subStat1 + "%");
+            CompatibilitypreparedStatement_3.setString(5, "%" + subStat3 + "%");
+            CompatibilitypreparedStatement_3.setString(6, "%" + subStat4 + "%");
+            CompatibilitypreparedStatement_3.setString(7, "%" + subStat3 + "%");
+            CompatibilitypreparedStatement_3.setString(8, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement_3.setString(9, "%" + subStat1 + "%");
+            CompatibilitypreparedStatement_3.setString(10, "%" + subStat4 + "%");
+            CompatibilitypreparedStatement_3.setString(11, "%" + subStat1 + "%");
+            CompatibilitypreparedStatement_3.setString(12, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement_3.setString(13, "%" + subStat4 + "%");
+            CompatibilitypreparedStatement_3.setString(14, "%" + subStat2 + "%");
+
+            // Выполнение запроса на вставку
+            CompatibilitypreparedStatement_3.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+//--------------------------------------------(1 set 0 mainstat 4 substat) -----------------------------------------------------------------//
+
+        String sqlSelectQuery_4 = "SELECT * FROM Heroes " +
+                "WHERE BestArtifacts LIKE ? " +
+                "AND " + artifactType + " NOT LIKE ? " +
+                "AND Substats LIKE ? " +
+                "AND Substats LIKE ? " +
+                "AND Substats LIKE ? " +
+                "AND Substats LIKE ?";
+
+        String sqlInsertQuery_4 = "INSERT INTO SoSo SELECT DISTINCT * FROM (" + sqlSelectQuery_4 + ") AS SelectedHeroes";
+
+        try (PreparedStatement CompatibilitypreparedStatement_4 = connection.prepareStatement(sqlInsertQuery_4)) {
+            CompatibilitypreparedStatement_4.setString(1, "%Noblesse Oblige%");
+
+            CompatibilitypreparedStatement_4.setString(2, "%" + subStat2 + "%");
+
+            CompatibilitypreparedStatement_4.setString(3, "%" + subStat1 + "%");
+            CompatibilitypreparedStatement_4.setString(4, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement_4.setString(5, "%" + subStat3 + "%");
+            CompatibilitypreparedStatement_4.setString(6, "%" + subStat4 + "%");
+
+            // Выполнение запроса на вставку
+            CompatibilitypreparedStatement_4.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        //--------------------------------------------(1 set 0 mainstat 3 substat) -----------------------------------------------------------------//
+
+        String sqlSelectQuery_5 = "SELECT * FROM Heroes " +
+                "WHERE BestArtifacts LIKE ? " +
+                "AND " + artifactType + " NOT LIKE ? " +
+                "AND (" +
+                "(Substats LIKE ? AND Substats LIKE ? AND Substats LIKE ?) OR " +
+                "(Substats LIKE ? AND Substats LIKE ? AND Substats LIKE ?) OR " +
+                "(Substats LIKE ? AND Substats LIKE ? AND Substats LIKE ?) OR " +
+                "(Substats LIKE ? AND Substats LIKE ? AND Substats LIKE ?)" +
+                ")";
+
+        String sqlInsertQuery_5 = "INSERT INTO SoSo SELECT DISTINCT * FROM (" + sqlSelectQuery_5 + ") AS SelectedHeroes";
+
+        try (PreparedStatement CompatibilitypreparedStatement_5 = connection.prepareStatement(sqlInsertQuery_5)) {
+            // Установка параметров
+            //-----------------------------Set-----------------------------------------------//
+            CompatibilitypreparedStatement_5.setString(1, "%Noblesse Oblige%");
+            //-----------------------------Stat-----------------------------------------------//
+            CompatibilitypreparedStatement_5.setString(2, "%" + subStat2 + "%");
+            //-----------------------------SubStats----------------------------------------//
+            CompatibilitypreparedStatement_5.setString(3, "%" + subStat1 + "%");
+            CompatibilitypreparedStatement_5.setString(4, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement_5.setString(5, "%" + subStat3 + "%");
+            //
+            CompatibilitypreparedStatement_5.setString(6, "%" + subStat4 + "%");
+            CompatibilitypreparedStatement_5.setString(7, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement_5.setString(8, "%" + subStat3 + "%");
+            //
+            CompatibilitypreparedStatement_5.setString(9, "%" + subStat4 + "%");
+            CompatibilitypreparedStatement_5.setString(10, "%" + subStat1 + "%");
+            CompatibilitypreparedStatement_5.setString(11, "%" + subStat3 + "%");
+            //
+            CompatibilitypreparedStatement_5.setString(12, "%" + subStat4 + "%");
+            CompatibilitypreparedStatement_5.setString(13, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement_5.setString(14, "%" + subStat1 + "%");
+
+            // Выполнение запроса на вставку
+            CompatibilitypreparedStatement_5.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+
+        //--------------------------------------------(0 set 0 mainstat 1 substat) -----------------------------------------------------------------//
+        // Создаем таблицу PerfectArt, если она не существует
+        String createTableBad = "CREATE TABLE IF NOT EXISTS Bad AS " +
+                "SELECT DISTINCT * FROM Heroes " +
+                "WHERE BestArtifacts NOT LIKE ? " +
+                "AND " + artifactType + " NOT LIKE ? " +
+                "AND (" +
+                "(Substats NOT LIKE ? AND Substats NOT LIKE ? AND Substats NOT LIKE ? AND Substats LIKE ?) OR " +
+                "(Substats NOT LIKE ? AND Substats NOT LIKE ? AND Substats LIKE ? AND Substats NOT LIKE ?) OR " +
+                "(Substats NOT LIKE ? AND Substats LIKE ? AND Substats NOT LIKE ? AND Substats NOT LIKE ?) OR " +
+                "(Substats LIKE ? AND Substats NOT LIKE ? AND Substats NOT LIKE ? AND Substats NOT LIKE ?)" +
+                ")";
+
+        PreparedStatement createTableStatementBad = connection.prepareStatement(createTableBad);
+        createTableStatementBad.setString(1, "%Noblesse Oblige%");
+
+        createTableStatementBad.setString(2, "%" + subStat2 + "%");
+
+        createTableStatementBad.setString(3, "%" + subStat1 + "%");
+        createTableStatementBad.setString(4, "%" + subStat2 + "%");
+        createTableStatementBad.setString(5, "%" + subStat3 + "%");
+        createTableStatementBad.setString(6, "%" + subStat4 + "%");
+
+        createTableStatementBad.setString(7, "%" + subStat1 + "%");
+        createTableStatementBad.setString(8, "%" + subStat2 + "%");
+        createTableStatementBad.setString(9, "%" + subStat3 + "%");
+        createTableStatementBad.setString(10, "%" + subStat4 + "%");
+
+        createTableStatementBad.setString(11, "%" + subStat1 + "%");
+        createTableStatementBad.setString(12, "%" + subStat2 + "%");
+        createTableStatementBad.setString(13, "%" + subStat3 + "%");
+        createTableStatementBad.setString(14, "%" + subStat4 + "%");
+
+        createTableStatementBad.setString(15, "%" + subStat1 + "%");
+        createTableStatementBad.setString(16, "%" + subStat2 + "%");
+        createTableStatementBad.setString(17, "%" + subStat3 + "%");
+        createTableStatementBad.setString(18, "%" + subStat4 + "%");
+
+        createTableStatementBad.executeUpdate();
+
+
+        //--------------------------------------------(0 set 0 mainstat 2 substat) -----------------------------------------------------------------//
+
+        String sqlSelectQuery_7 = "SELECT DISTINCT * FROM Heroes " +
+                "WHERE BestArtifacts NOT LIKE ? " +
+                "AND " + artifactType + " NOT LIKE ? " +
+                "AND (" +
+                "(Substats NOT LIKE ? AND Substats NOT LIKE ? AND Substats LIKE ? AND Substats LIKE ?) OR " +
+                "(Substats NOT LIKE ? AND Substats LIKE ? AND Substats NOT LIKE ? AND Substats LIKE ?) OR " +
+                "(Substats NOT LIKE ? AND Substats LIKE ? AND Substats LIKE ? AND Substats NOT LIKE ?) OR " +
+                "(Substats LIKE ? AND Substats NOT LIKE ? AND Substats NOT LIKE ? AND Substats LIKE ?) OR " +
+                "(Substats LIKE ? AND Substats NOT LIKE ? AND Substats LIKE ? AND Substats NOT LIKE ?) OR " +
+                "(Substats LIKE ? AND Substats LIKE ? AND Substats NOT LIKE ? AND Substats NOT LIKE ?)" +
+                ")";
+
+        String sqlInsertQuery_7 = "INSERT INTO Bad SELECT DISTINCT * FROM (" + sqlSelectQuery_7 + ") AS SelectedHeroes";
+
+        try (PreparedStatement CompatibilitypreparedStatement_7 = connection.prepareStatement(sqlInsertQuery_7)) {
+            CompatibilitypreparedStatement_7.setString(1, "%Noblesse Oblige%");
+
+            CompatibilitypreparedStatement_7.setString(2, "%" + subStat2 + "%");
+
+            CompatibilitypreparedStatement_7.setString(3, "%" + subStat1 + "%");
+            CompatibilitypreparedStatement_7.setString(4, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement_7.setString(5, "%" + subStat3 + "%");
+            CompatibilitypreparedStatement_7.setString(6, "%" + subStat4 + "%");
+
+            CompatibilitypreparedStatement_7.setString(7, "%" + subStat1 + "%");
+            CompatibilitypreparedStatement_7.setString(8, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement_7.setString(9, "%" + subStat3 + "%");
+            CompatibilitypreparedStatement_7.setString(10, "%" + subStat4 + "%");
+
+            CompatibilitypreparedStatement_7.setString(11, "%" + subStat1 + "%");
+            CompatibilitypreparedStatement_7.setString(12, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement_7.setString(13, "%" + subStat3 + "%");
+            CompatibilitypreparedStatement_7.setString(14, "%" + subStat4 + "%");
+
+            CompatibilitypreparedStatement_7.setString(15, "%" + subStat1 + "%");
+            CompatibilitypreparedStatement_7.setString(16, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement_7.setString(17, "%" + subStat3 + "%");
+            CompatibilitypreparedStatement_7.setString(18, "%" + subStat4 + "%");
+
+            CompatibilitypreparedStatement_7.setString(19, "%" + subStat1 + "%");
+            CompatibilitypreparedStatement_7.setString(20, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement_7.setString(21, "%" + subStat3 + "%");
+            CompatibilitypreparedStatement_7.setString(22, "%" + subStat4 + "%");
+
+            CompatibilitypreparedStatement_7.setString(23, "%" + subStat1 + "%");
+            CompatibilitypreparedStatement_7.setString(24, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement_7.setString(25, "%" + subStat3 + "%");
+            CompatibilitypreparedStatement_7.setString(26, "%" + subStat4 + "%");
+
+            // Выполнение запроса на вставку
+            CompatibilitypreparedStatement_7.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        //--------------------------------------------(0 set 0 mainstat 3 substat) -----------------------------------------------------------------//
+
+        String sqlSelectQuery_8 = "SELECT DISTINCT * FROM Heroes " +
+                "WHERE BestArtifacts NOT LIKE ? " +
+                "AND " + artifactType + " NOT LIKE ? " +
+                "AND (" +
+                "(Substats NOT LIKE ? AND Substats LIKE ? AND Substats LIKE ? AND Substats LIKE ?) OR " +
+                "(Substats LIKE ? AND Substats NOT LIKE ? AND Substats LIKE ? AND Substats LIKE ?) OR " +
+                "(Substats LIKE ? AND Substats LIKE ? AND Substats NOT LIKE ? AND Substats LIKE ?) OR " +
+                "(Substats LIKE ? AND Substats NOT LIKE ? AND Substats LIKE ? AND Substats NOT LIKE ?)" +
+                ")";
+
+        String sqlInsertQuery_8 = "INSERT INTO Bad SELECT DISTINCT * FROM (" + sqlSelectQuery_8 + ") AS SelectedHeroes";
+
+        try (PreparedStatement CompatibilitypreparedStatement_8 = connection.prepareStatement(sqlInsertQuery_8)) {
+            CompatibilitypreparedStatement_8.setString(1, "%Noblesse Oblige%");
+
+            CompatibilitypreparedStatement_8.setString(2, "%" + subStat2 + "%");
+
+            CompatibilitypreparedStatement_8.setString(3, "%" + subStat1 + "%");
+            CompatibilitypreparedStatement_8.setString(4, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement_8.setString(5, "%" + subStat3 + "%");
+            CompatibilitypreparedStatement_8.setString(6, "%" + subStat4 + "%");
+
+            CompatibilitypreparedStatement_8.setString(7, "%" + subStat1 + "%");
+            CompatibilitypreparedStatement_8.setString(8, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement_8.setString(9, "%" + subStat3 + "%");
+            CompatibilitypreparedStatement_8.setString(10, "%" + subStat4 + "%");
+
+            CompatibilitypreparedStatement_8.setString(11, "%" + subStat1 + "%");
+            CompatibilitypreparedStatement_8.setString(12, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement_8.setString(13, "%" + subStat3 + "%");
+            CompatibilitypreparedStatement_8.setString(14, "%" + subStat4 + "%");
+
+            CompatibilitypreparedStatement_8.setString(15, "%" + subStat1 + "%");
+            CompatibilitypreparedStatement_8.setString(16, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement_8.setString(17, "%" + subStat3 + "%");
+            CompatibilitypreparedStatement_8.setString(18, "%" + subStat4 + "%");
+
+            // Выполнение запроса на вставку
+            CompatibilitypreparedStatement_8.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        //--------------------------------------------(0 set 0 mainstat 4 substat) -----------------------------------------------------------------//
+
+        String sqlSelectQuery_9 = "SELECT DISTINCT * FROM Heroes " +
+                "WHERE BestArtifacts NOT LIKE ? " +
+                "AND " + artifactType + " NOT LIKE ? " +
+                "AND (" +
+                "(Substats LIKE ?) AND " +
+                "(Substats LIKE ?) AND " +
+                "(Substats LIKE ?) AND " +
+                "(Substats LIKE ?)" +
+                ")";
+
+        String sqlInsertQuery_9 = "INSERT INTO Bad SELECT DISTINCT * FROM (" + sqlSelectQuery_9 + ") AS SelectedHeroes";
+
+        try (PreparedStatement CompatibilitypreparedStatement_9 = connection.prepareStatement(sqlInsertQuery_9)) {
+            CompatibilitypreparedStatement_9.setString(1, "%Noblesse Oblige%");
+
+            CompatibilitypreparedStatement_9.setString(2, "%" + subStat2 + "%");
+
+            CompatibilitypreparedStatement_9.setString(3, "%" + subStat1 + "%");
+            CompatibilitypreparedStatement_9.setString(4, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement_9.setString(5, "%" + subStat3 + "%");
+            CompatibilitypreparedStatement_9.setString(6, "%" + subStat4 + "%");
+
+
+            // Выполнение запроса на вставку
+            CompatibilitypreparedStatement_9.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        //--------------------------------------------(1 set 0 mainstat 2 substat) -----------------------------------------------------------------//
+
+        String sqlSelectQuery_10 = "SELECT * FROM Heroes " +
+                "WHERE BestArtifacts LIKE ? " +
+                "AND " + artifactType + " NOT LIKE ? " +
+                "AND (" +
+                "(Substats LIKE ? AND Substats LIKE ?) OR " +
+                "(Substats LIKE ? AND Substats LIKE ?) OR " +
+                "(Substats LIKE ? AND Substats LIKE ?) OR " +
+                "(Substats LIKE ? AND Substats LIKE ?) OR " +
+                "(Substats LIKE ? AND Substats LIKE ?) OR " +
+                "(Substats LIKE ? AND Substats LIKE ?)" +
+                ")";
+
+        String sqlInsertQuery_10 = "INSERT INTO SoSo SELECT DISTINCT * FROM (" + sqlSelectQuery_10 + ") AS SelectedHeroes";
+
+        try (PreparedStatement CompatibilitypreparedStatement_10 = connection.prepareStatement(sqlInsertQuery_10)) {
+            // Установка параметров
+            CompatibilitypreparedStatement_10.setString(1, "%Noblesse Oblige%");
+
+            CompatibilitypreparedStatement_10.setString(2, "%" + subStat2 + "%");
+
+            CompatibilitypreparedStatement_10.setString(3, "%" + subStat3 + "%");
+            CompatibilitypreparedStatement_10.setString(4, "%" + subStat1 + "%");
+
+            CompatibilitypreparedStatement_10.setString(5, "%" + subStat3 + "%");
+            CompatibilitypreparedStatement_10.setString(6, "%" + subStat4 + "%");
+
+            CompatibilitypreparedStatement_10.setString(7, "%" + subStat3 + "%");
+            CompatibilitypreparedStatement_10.setString(8, "%" + subStat2 + "%");
+
+            CompatibilitypreparedStatement_10.setString(9, "%" + subStat1 + "%");
+            CompatibilitypreparedStatement_10.setString(10, "%" + subStat4 + "%");
+
+            CompatibilitypreparedStatement_10.setString(11, "%" + subStat1 + "%");
+            CompatibilitypreparedStatement_10.setString(12, "%" + subStat2 + "%");
+
+            CompatibilitypreparedStatement_10.setString(13, "%" + subStat4 + "%");
+            CompatibilitypreparedStatement_10.setString(14, "%" + subStat2 + "%");
+
+            // Выполнение запроса на вставку
+            CompatibilitypreparedStatement_10.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        //--------------------------------------------(1 set 0 mainstat 1 substat) -----------------------------------------------------------------//
+
+        String sqlSelectQuery_11 = "SELECT DISTINCT * FROM Heroes " +
+                "WHERE BestArtifacts LIKE ? " +
+                "AND " + artifactType + " NOT LIKE ? " +
+                "AND (" +
+                "(Substats LIKE ?) OR " +
+                "(Substats LIKE ?) OR " +
+                "(Substats LIKE ?) OR " +
+                "(Substats LIKE ?)" +
+                ")";
+
+        String sqlInsertQuery_11 = "INSERT INTO Bad SELECT DISTINCT * FROM (" + sqlSelectQuery_11 + ") AS SelectedHeroes";
+
+        try (PreparedStatement CompatibilitypreparedStatement_11 = connection.prepareStatement(sqlInsertQuery_11)) {
+            CompatibilitypreparedStatement_11.setString(1, "%Noblesse Oblige%");
+
+            CompatibilitypreparedStatement_11.setString(2, "%" + subStat2 + "%");
+
+            CompatibilitypreparedStatement_11.setString(3, "%" + subStat1 + "%");
+            CompatibilitypreparedStatement_11.setString(4, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement_11.setString(5, "%" + subStat3 + "%");
+            CompatibilitypreparedStatement_11.setString(6, "%" + subStat4 + "%");
+
+
+            // Выполнение запроса на вставку
+            CompatibilitypreparedStatement_11.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        //--------------------------------------------(0 set 1 mainstat 1 substat) -----------------------------------------------------------------//
+
+        String sqlSelectQuery_12 = "SELECT DISTINCT * FROM Heroes " +
+                "WHERE BestArtifacts NOT LIKE ? " +
+                "AND " + artifactType + " LIKE ? " +
+                "AND (" +
+                "(Substats LIKE ?) OR " +
+                "(Substats LIKE ?) OR " +
+                "(Substats LIKE ?) OR " +
+                "(Substats LIKE ?)" +
+                ")";
+
+        String sqlInsertQuery_12 = "INSERT INTO Bad SELECT DISTINCT * FROM (" + sqlSelectQuery_12 + ") AS SelectedHeroes";
+
+        try (PreparedStatement CompatibilitypreparedStatement_12 = connection.prepareStatement(sqlInsertQuery_12)) {
+            CompatibilitypreparedStatement_12.setString(1, "%Noblesse Oblige%");
+
+            CompatibilitypreparedStatement_12.setString(2, "%" + subStat2 + "%");
+
+            CompatibilitypreparedStatement_12.setString(3, "%" + subStat1 + "%");
+            CompatibilitypreparedStatement_12.setString(4, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement_12.setString(5, "%" + subStat3 + "%");
+            CompatibilitypreparedStatement_12.setString(6, "%" + subStat4 + "%");
+
+
+            // Выполнение запроса на вставку
+            CompatibilitypreparedStatement_12.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
+
+
 }

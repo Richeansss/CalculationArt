@@ -8,12 +8,10 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Parser {
-    public static void main(String[] args) throws Exception {
-        // Создаем словарь с идентификаторами персонажей и комментариями
-        HashMap<String, String> characterIDs = UiMap.getCharactersID();
-        // Добавьте остальные идентификаторы и комментарии по вашему выбору
-
+public class ParserHtml {
+    public static void PerCharacter() {
+        HashMap<String, String> characterIDs = HMap.getCharactersID();
+        Tables.getConnectionResetAndCreate();
         for (Map.Entry<String, String> entry : characterIDs.entrySet()) {
             String characterID = entry.getKey();
             String characterName = entry.getValue();
@@ -61,6 +59,7 @@ public class Parser {
                 DataBaseHandler.InsertToDB(characterName);
 
                 System.out.println("Таблицы и их заголовки успешно сохранены в файл: " + outputFilePath);
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
