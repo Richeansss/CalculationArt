@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="200.0" minWidth="200.0" prefHeight="713.0" prefWidth="700.0" style="-fx-background-color: #2c4d55;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.colculationart.InsertArtController">
+   <children>
+      <AnchorPane layoutX="10.0" layoutY="19.0" prefHeight="78.0" prefWidth="822.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="-10.0">
+         <children>
+            <Label layoutX="251.0" layoutY="8.0" text="Calculation Art" textFill="WHITE">
+               <font>
+                  <Font name="Niagara Solid" size="57.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="75.0" prefHeight="640.0" prefWidth="700.0" style="-fx-background-color: #26252d;" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
+         <children>
+               <HBox layoutX="455.0" layoutY="86.0" spacing="20" />
+               <VBox layoutX="416.0" layoutY="14.0" prefHeight="473.0" prefWidth="149.0" spacing="10">
+                  <VBox fx:id="vbox1">
+                     <Label text="Набор артефактов" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI Historic" size="12.0" />
+                     </font></Label>
+                     <ComboBox fx:id="comboBox1" promptText="Select Option" />
+                  </VBox>
+               <VBox fx:id="vbox2">
+                  <children>
+                     <Label text="Тип Артефакта" textFill="WHITE">
+                        <font>
+                           <Font name="Segoe UI Historic" size="12.0" />
+                        </font>
+                     </Label>
+                     <ComboBox fx:id="comboBox2" prefWidth="150.0" />
+                  </children>
+               </VBox>
+                  <VBox fx:id="vbox3">
+                     <Label text="Оснавная характеристика" textFill="WHITE" />
+                     <ComboBox fx:id="comboBox3" prefHeight="25.0" prefWidth="133.0" promptText="Select Option 1">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </ComboBox>
+                  <TextField fx:id="textField1" promptText="Enter Value 2" />
+                  <Slider fx:id="slider1" />
+                  </VBox>
+                  <VBox fx:id="vbox4">
+                     <Label text="Option 2:" />
+                     <ComboBox fx:id="comboBox4" promptText="Select Option 2" />
+                     <TextField fx:id="textField2" promptText="Enter Value 2" />
+                  <Slider fx:id="slider2" />
+                  </VBox>
+                  <VBox fx:id="vbox5">
+                     <Label text="Option 3:" />
+                     <ComboBox fx:id="comboBox5" promptText="Select Option 3" />
+                     <TextField fx:id="textField3" promptText="Enter Value 3" />
+                  <Slider fx:id="slider3" />
+                  </VBox>
+                  <VBox fx:id="vbox6">
+                     <Label text="Option 4:" />
+                     <ComboBox fx:id="comboBox6" promptText="Select Option 4" />
+                     <TextField fx:id="textField4" promptText="Enter Value 4" />
+                  <Slider fx:id="slider4" />
+                  </VBox>
+               <VBox fx:id="vbox7">
+                  <children>
+                     <Label text="Option 4:" />
+                     <ComboBox fx:id="comboBox7" promptText="Select Option 4" />
+                     <TextField fx:id="textField5" promptText="Enter Value 4" />
+                     <Slider fx:id="slider5" />
+                  </children>
+               </VBox>
+                  <Button fx:id="actionButton" text="Perform Action" />
+               </VBox>
+            <VBox layoutX="91.0" layoutY="145.0">
+               <children>
+                  <Label fx:id="artLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="28.0" prefWidth="208.0" text="Label" textAlignment="CENTER" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="artImg" fitHeight="175.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="artType" alignment="CENTER" contentDisplay="CENTER" prefHeight="28.0" prefWidth="208.0" text="Label" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
