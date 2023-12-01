@@ -11,7 +11,7 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader CharacterLoader = new FXMLLoader(HelloApplication.class.getResource("insertArt-view.fxml"));
+        FXMLLoader CharacterLoader = new FXMLLoader(HelloApplication.class.getResource("load-view.fxml"));
 
         Parent root = CharacterLoader.load();
         Scene characterScene = new Scene(root);

@@ -1,4 +1,7 @@
 package com.example.colculationart;
+import javafx.application.Platform;
+import javafx.fxml.FXML;
+import javafx.scene.control.ProgressBar;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -9,9 +12,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ParserHtml {
-    public static void PerCharacter() {
+
+    private ProgressBarUpdater progressBarUpdater;
+
+    public void setProgressBarUpdater(ProgressBarUpdater updater) {
+        this.progressBarUpdater = updater;
+    }
+
+    public static void PerCharacter(ParserHtml parserHtml) {
         HashMap<String, String> characterIDs = HMap.getCharactersID();
         Tables.getConnectionResetAndCreate();
+        int totalCharacters = characterIDs.size();
+        int currentCharacter = 0;
         for (Map.Entry<String, String> entry : characterIDs.entrySet()) {
             String characterID = entry.getKey();
             String characterName = entry.getValue();
@@ -60,8 +72,17 @@ public class ParserHtml {
 
                 System.out.println("Таблицы и их заголовки успешно сохранены в файл: " + outputFilePath);
 
+
             } catch (IOException e) {
                 e.printStackTrace();
+            }
+
+
+
+            currentCharacter++;
+            double progress = (double) currentCharacter / totalCharacters;
+            if (parserHtml.progressBarUpdater != null) {
+                parserHtml.progressBarUpdater.updateProgressBar(progress, characterName);
             }
         }
     }

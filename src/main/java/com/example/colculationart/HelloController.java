@@ -101,9 +101,9 @@ public class HelloController {
              */
         });
 
-        updateMainTableButton.setOnAction(event -> {
-            ParserHtml.PerCharacter();
-        });
+        //updateMainTableButton.setOnAction(event -> {
+        //    ParserHtml.PerCharacter();
+        //});
 
         selectCharacterButton.setOnAction(event -> {
             try {
