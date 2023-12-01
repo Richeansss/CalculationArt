@@ -25,9 +25,9 @@ public class LoadController implements ProgressBarUpdater {
         // Создаем и запускаем задачу
         try {
             DataBaseHandler.getConnection();
-            Task<Void> task = new Task<Void>() {
+            Task<Void> task = new Task<>() {
                 @Override
-                protected Void call() throws Exception {
+                protected Void call() {
                     ParserHtml parserHtml = new ParserHtml();
                     parserHtml.setProgressBarUpdater(LoadController.this);
 
