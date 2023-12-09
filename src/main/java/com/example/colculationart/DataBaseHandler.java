@@ -360,7 +360,7 @@ public class DataBaseHandler {
         return DriverManager.getConnection(url, username, password);
     }
 
-    public static void executeQuery(Connection connection, String artifactType, String bestArtifact, String mainStat, String subStat1, String subStat2, String subStat3, String subStat4) throws SQLException {
+    public static void executeQuery(Connection connection, String bestArtifact, String artifactType, String mainStat, String subStat1, String subStat2, String subStat3, String subStat4) throws SQLException {
 //--------------------------------------------(1 set 1 mainstat 4 substat) -----------------------------------------------------------------//
         // Создаем таблицу PerfectArt, если она не существует
         String createTablePerfect = "CREATE TABLE IF NOT EXISTS PerfectArt AS " +
@@ -374,7 +374,9 @@ public class DataBaseHandler {
 
         PreparedStatement createTableStatement = connection.prepareStatement(createTablePerfect);
         createTableStatement.setString(1, "%" + bestArtifact + "%");
+
         createTableStatement.setString(2, "%" + mainStat + "%");
+
         createTableStatement.setString(3, "%" + subStat1 + "%");
         createTableStatement.setString(4, "%" + subStat2 + "%");
         createTableStatement.setString(5, "%" + subStat3 + "%");
@@ -399,7 +401,7 @@ public class DataBaseHandler {
         //-----------------------------MainSet----------------------------------------//
         createTableCompatibilityStatement.setString(1, "%" + bestArtifact + "%");
         //-----------------------------MainStat----------------------------------------//
-        createTableCompatibilityStatement.setString(2, "%" + subStat2 + "%");
+        createTableCompatibilityStatement.setString(2, "%" + mainStat + "%");
         //-----------------------------SubStats----------------------------------------//
         createTableCompatibilityStatement.setString(3, "%" + subStat1 + "%");
         createTableCompatibilityStatement.setString(4, "%" + subStat2 + "%");
@@ -439,18 +441,25 @@ public class DataBaseHandler {
 
         try (PreparedStatement CompatibilitypreparedStatement = connection.prepareStatement(sqlInsertQuery)) {
             // Установка параметров
-            CompatibilitypreparedStatement.setString(1, "%Noblesse Oblige%");
-            CompatibilitypreparedStatement.setString(2, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement.setString(1, "%" + bestArtifact + "%");
+
+            CompatibilitypreparedStatement.setString(2, "%" + mainStat + "%");
+
             CompatibilitypreparedStatement.setString(3, "%" + subStat3 + "%");
             CompatibilitypreparedStatement.setString(4, "%" + subStat1 + "%");
+
             CompatibilitypreparedStatement.setString(5, "%" + subStat3 + "%");
             CompatibilitypreparedStatement.setString(6, "%" + subStat4 + "%");
+
             CompatibilitypreparedStatement.setString(7, "%" + subStat3 + "%");
             CompatibilitypreparedStatement.setString(8, "%" + subStat2 + "%");
+
             CompatibilitypreparedStatement.setString(9, "%" + subStat1 + "%");
             CompatibilitypreparedStatement.setString(10, "%" + subStat4 + "%");
+
             CompatibilitypreparedStatement.setString(11, "%" + subStat1 + "%");
             CompatibilitypreparedStatement.setString(12, "%" + subStat2 + "%");
+
             CompatibilitypreparedStatement.setString(13, "%" + subStat4 + "%");
             CompatibilitypreparedStatement.setString(14, "%" + subStat2 + "%");
 
@@ -474,8 +483,10 @@ public class DataBaseHandler {
                 ")";
 
         PreparedStatement createTableStatementSoSO = connection.prepareStatement(createTableSoSO);
-        createTableStatementSoSO.setString(1, "%Noblesse Oblige%");
-        createTableStatementSoSO.setString(2, "%" + subStat2 + "%");
+        createTableStatementSoSO.setString(1, "%" + bestArtifact + "%");
+
+        createTableStatementSoSO.setString(2, "%" + mainStat + "%");
+
         createTableStatementSoSO.setString(3, "%" + subStat1 + "%");
         createTableStatementSoSO.setString(4, "%" + subStat2 + "%");
         createTableStatementSoSO.setString(5, "%" + subStat3 + "%");
@@ -497,9 +508,9 @@ public class DataBaseHandler {
 
         try (PreparedStatement CompatibilitypreparedStatement_1 = connection.prepareStatement(sqlInsertQuery_1)) {
             // Установка параметров
-            CompatibilitypreparedStatement_1.setString(1, "%Noblesse Oblige%");
+            CompatibilitypreparedStatement_1.setString(1, "%" + bestArtifact + "%");
 
-            CompatibilitypreparedStatement_1.setString(2, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement_1.setString(2, "%" + mainStat + "%");
 
             CompatibilitypreparedStatement_1.setString(3, "%" + subStat3 + "%");
             CompatibilitypreparedStatement_1.setString(4, "%" + subStat1 + "%");
@@ -533,10 +544,10 @@ public class DataBaseHandler {
         try (PreparedStatement CompatibilitypreparedStatement_2 = connection.prepareStatement(sqlInsertQuery_2)) {
             // Установка параметров
             //-----------------------------Set---------------------------------------------//
-            CompatibilitypreparedStatement_2.setString(1, "%Noblesse Oblige%");
+            CompatibilitypreparedStatement_2.setString(1, "%" + bestArtifact + "%");
 
             //-----------------------------MainStat----------------------------------------//
-            CompatibilitypreparedStatement_2.setString(2, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement_2.setString(2, "%" + mainStat + "%");
             //-----------------------------SubStats----------------------------------------//
             CompatibilitypreparedStatement_2.setString(3, "%" + subStat1 + "%");
             CompatibilitypreparedStatement_2.setString(4, "%" + subStat2 + "%");
@@ -579,9 +590,9 @@ public class DataBaseHandler {
 
         try (PreparedStatement CompatibilitypreparedStatement_3 = connection.prepareStatement(sqlInsertQuery_3)) {
             // Установка параметров
-            CompatibilitypreparedStatement_3.setString(1, "%Noblesse Oblige%");
+            CompatibilitypreparedStatement_3.setString(1, "%" + bestArtifact + "%");
 
-            CompatibilitypreparedStatement_3.setString(2, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement_3.setString(2, "%" + mainStat + "%");
 
             CompatibilitypreparedStatement_3.setString(3, "%" + subStat3 + "%");
             CompatibilitypreparedStatement_3.setString(4, "%" + subStat1 + "%");
@@ -614,9 +625,9 @@ public class DataBaseHandler {
         String sqlInsertQuery_4 = "INSERT INTO SoSo SELECT DISTINCT * FROM (" + sqlSelectQuery_4 + ") AS SelectedHeroes";
 
         try (PreparedStatement CompatibilitypreparedStatement_4 = connection.prepareStatement(sqlInsertQuery_4)) {
-            CompatibilitypreparedStatement_4.setString(1, "%Noblesse Oblige%");
+            CompatibilitypreparedStatement_4.setString(1, "%" + bestArtifact + "%");
 
-            CompatibilitypreparedStatement_4.setString(2, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement_4.setString(2, "%" + mainStat + "%");
 
             CompatibilitypreparedStatement_4.setString(3, "%" + subStat1 + "%");
             CompatibilitypreparedStatement_4.setString(4, "%" + subStat2 + "%");
@@ -646,9 +657,9 @@ public class DataBaseHandler {
         try (PreparedStatement CompatibilitypreparedStatement_5 = connection.prepareStatement(sqlInsertQuery_5)) {
             // Установка параметров
             //-----------------------------Set-----------------------------------------------//
-            CompatibilitypreparedStatement_5.setString(1, "%Noblesse Oblige%");
+            CompatibilitypreparedStatement_5.setString(1, "%" + bestArtifact + "%");
             //-----------------------------Stat-----------------------------------------------//
-            CompatibilitypreparedStatement_5.setString(2, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement_5.setString(2, "%" + mainStat + "%");
             //-----------------------------SubStats----------------------------------------//
             CompatibilitypreparedStatement_5.setString(3, "%" + subStat1 + "%");
             CompatibilitypreparedStatement_5.setString(4, "%" + subStat2 + "%");
@@ -688,9 +699,9 @@ public class DataBaseHandler {
                 ")";
 
         PreparedStatement createTableStatementBad = connection.prepareStatement(createTableBad);
-        createTableStatementBad.setString(1, "%Noblesse Oblige%");
+        createTableStatementBad.setString(1, "%" + bestArtifact + "%");
 
-        createTableStatementBad.setString(2, "%" + subStat2 + "%");
+        createTableStatementBad.setString(2, "%" + mainStat + "%");
 
         createTableStatementBad.setString(3, "%" + subStat1 + "%");
         createTableStatementBad.setString(4, "%" + subStat2 + "%");
@@ -732,9 +743,9 @@ public class DataBaseHandler {
         String sqlInsertQuery_7 = "INSERT INTO Bad SELECT DISTINCT * FROM (" + sqlSelectQuery_7 + ") AS SelectedHeroes";
 
         try (PreparedStatement CompatibilitypreparedStatement_7 = connection.prepareStatement(sqlInsertQuery_7)) {
-            CompatibilitypreparedStatement_7.setString(1, "%Noblesse Oblige%");
+            CompatibilitypreparedStatement_7.setString(1, "%" + bestArtifact + "%");
 
-            CompatibilitypreparedStatement_7.setString(2, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement_7.setString(2, "%" + mainStat + "%");
 
             CompatibilitypreparedStatement_7.setString(3, "%" + subStat1 + "%");
             CompatibilitypreparedStatement_7.setString(4, "%" + subStat2 + "%");
@@ -787,9 +798,9 @@ public class DataBaseHandler {
         String sqlInsertQuery_8 = "INSERT INTO Bad SELECT DISTINCT * FROM (" + sqlSelectQuery_8 + ") AS SelectedHeroes";
 
         try (PreparedStatement CompatibilitypreparedStatement_8 = connection.prepareStatement(sqlInsertQuery_8)) {
-            CompatibilitypreparedStatement_8.setString(1, "%Noblesse Oblige%");
+            CompatibilitypreparedStatement_8.setString(1, "%" + bestArtifact + "%");
 
-            CompatibilitypreparedStatement_8.setString(2, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement_8.setString(2, "%" + mainStat + "%");
 
             CompatibilitypreparedStatement_8.setString(3, "%" + subStat1 + "%");
             CompatibilitypreparedStatement_8.setString(4, "%" + subStat2 + "%");
@@ -832,9 +843,9 @@ public class DataBaseHandler {
         String sqlInsertQuery_9 = "INSERT INTO Bad SELECT DISTINCT * FROM (" + sqlSelectQuery_9 + ") AS SelectedHeroes";
 
         try (PreparedStatement CompatibilitypreparedStatement_9 = connection.prepareStatement(sqlInsertQuery_9)) {
-            CompatibilitypreparedStatement_9.setString(1, "%Noblesse Oblige%");
+            CompatibilitypreparedStatement_9.setString(1, "%" + bestArtifact + "%");
 
-            CompatibilitypreparedStatement_9.setString(2, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement_9.setString(2, "%" + mainStat + "%");
 
             CompatibilitypreparedStatement_9.setString(3, "%" + subStat1 + "%");
             CompatibilitypreparedStatement_9.setString(4, "%" + subStat2 + "%");
@@ -866,9 +877,9 @@ public class DataBaseHandler {
 
         try (PreparedStatement CompatibilitypreparedStatement_10 = connection.prepareStatement(sqlInsertQuery_10)) {
             // Установка параметров
-            CompatibilitypreparedStatement_10.setString(1, "%Noblesse Oblige%");
+            CompatibilitypreparedStatement_10.setString(1, "%" + bestArtifact + "%");
 
-            CompatibilitypreparedStatement_10.setString(2, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement_10.setString(2, "%" + mainStat + "%");
 
             CompatibilitypreparedStatement_10.setString(3, "%" + subStat3 + "%");
             CompatibilitypreparedStatement_10.setString(4, "%" + subStat1 + "%");
@@ -909,9 +920,9 @@ public class DataBaseHandler {
         String sqlInsertQuery_11 = "INSERT INTO Bad SELECT DISTINCT * FROM (" + sqlSelectQuery_11 + ") AS SelectedHeroes";
 
         try (PreparedStatement CompatibilitypreparedStatement_11 = connection.prepareStatement(sqlInsertQuery_11)) {
-            CompatibilitypreparedStatement_11.setString(1, "%Noblesse Oblige%");
+            CompatibilitypreparedStatement_11.setString(1, "%" + bestArtifact + "%");
 
-            CompatibilitypreparedStatement_11.setString(2, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement_11.setString(2, "%" + mainStat + "%");
 
             CompatibilitypreparedStatement_11.setString(3, "%" + subStat1 + "%");
             CompatibilitypreparedStatement_11.setString(4, "%" + subStat2 + "%");
@@ -940,9 +951,9 @@ public class DataBaseHandler {
         String sqlInsertQuery_12 = "INSERT INTO Bad SELECT DISTINCT * FROM (" + sqlSelectQuery_12 + ") AS SelectedHeroes";
 
         try (PreparedStatement CompatibilitypreparedStatement_12 = connection.prepareStatement(sqlInsertQuery_12)) {
-            CompatibilitypreparedStatement_12.setString(1, "%Noblesse Oblige%");
+            CompatibilitypreparedStatement_12.setString(1, "%" + bestArtifact + "%");
 
-            CompatibilitypreparedStatement_12.setString(2, "%" + subStat2 + "%");
+            CompatibilitypreparedStatement_12.setString(2, "%" + mainStat + "%");
 
             CompatibilitypreparedStatement_12.setString(3, "%" + subStat1 + "%");
             CompatibilitypreparedStatement_12.setString(4, "%" + subStat2 + "%");

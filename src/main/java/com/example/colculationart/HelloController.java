@@ -23,6 +23,13 @@ import static com.example.colculationart.DataBaseHandler.getConnection;
 
 
 public class HelloController {
+    private String artifactType;
+    private String bestArtifact;
+    private String mainStat;
+    private String subStat1;
+    private String subStat2;
+    private String subStat3;
+    private String subStat4;
 
     @FXML
     private Label welcomeText;
@@ -72,16 +79,17 @@ public class HelloController {
     private final HashMap<String, String> Character = HMap.getCharactersID();
 
     @FXML
-    private void initialize() throws RuntimeException {
-        // Use the characterMap to get character names
-        //ChoiceCharacterStatusBox.getItems().addAll(Character.values());
+    private void initialize(){
+        processResultSet("perfectart", null, tilePanePerfect);
+        processResultSet("compatibility", "perfectart", tilePaneCompatibility);
+        processResultSet("soso", "compatibility", tilePaneSoSo);
+        processResultSet("bad", "soso", tilePaneBad);
 
-        //ChoiceCharacterStatusBox.setOnAction(this::getCharacter);
 
         myButton.setOnAction(event -> {
 
             try {
-                DataBaseHandler.executeQuery(getConnection(), "Sands","Noblesse Oblige","ATK","CRIT DMG", "ATK", "CRIT RATE", "Energy Recharge");
+                DataBaseHandler.executeQuery(getConnection(), bestArtifact,artifactType,mainStat,subStat1, subStat2, subStat3, subStat4);
             } catch (SQLException | IOException e) {
                 throw new RuntimeException(e);
             }
@@ -124,10 +132,7 @@ public class HelloController {
             }
         });
 
-        processResultSet("perfectart", null, tilePanePerfect);
-        processResultSet("compatibility", "perfectart", tilePaneCompatibility);
-        processResultSet("soso", "compatibility", tilePaneSoSo);
-        processResultSet("bad", "soso", tilePaneBad);
+
     }
 
     private void processResultSet(String mainTableName, String relatedTableName, TilePane tilePane) {
@@ -170,6 +175,7 @@ public class HelloController {
 
                     tilePane.getChildren().add(vbox);
                 }
+
             }
         } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
@@ -227,6 +233,18 @@ public class HelloController {
         vbox.getChildren().addAll(imageView, nameText, setNameText);
         vbox.setAlignment(Pos.CENTER);
         return vbox;
+    }
+
+    public void initData(String artifactType, String bestArtifact, String mainStat, String subStat1, String subStat2, String subStat3, String subStat4) {
+        this.artifactType = artifactType;
+        this.bestArtifact = bestArtifact;
+        this.mainStat = mainStat;
+        this.subStat1 = subStat1;
+        this.subStat2 = subStat2;
+        this.subStat3 = subStat3;
+        this.subStat4 = subStat4;
+
+        // Используйте параметры по мере необходимости в других частях вашего контроллера
     }
 
 }

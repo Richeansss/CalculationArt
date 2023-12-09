@@ -3,35 +3,43 @@ package com.example.colculationart;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Map;
 import java.util.Objects;
 
+import static com.example.colculationart.DataBaseHandler.getConnection;
+
+import javafx.scene.control.ChoiceBox;  // Импорт ChoiceBox вместо ComboBox
 
 public class InsertArtController {
 
     @FXML
-    private ComboBox<String> comboBox1;
+    private ChoiceBox<String> choiceBox1;  // Замена ComboBox на ChoiceBox
     @FXML
-    private ComboBox<String> comboBox2;
+    private ChoiceBox<String> choiceBox2;
     @FXML
-    private ComboBox<String> comboBox3;
+    private ChoiceBox<String> choiceBox3;
     @FXML
-    private ComboBox<String> comboBox4;
+    private ChoiceBox<String> choiceBox4;
     @FXML
-    private ComboBox<String> comboBox5;
+    private ChoiceBox<String> choiceBox5;
     @FXML
-    private ComboBox<String> comboBox6;
+    private ChoiceBox<String> choiceBox6;
     @FXML
-    private ComboBox<String> comboBox7;
+    private ChoiceBox<String> choiceBox7;
 
     @FXML
     Label artLabel;
@@ -95,15 +103,47 @@ public class InsertArtController {
     private ImageView artImg;
 
     @FXML
+    private Button actionButton;
+
+    @FXML
     private void initialize() {
+        ComboBox<HBox> comboBox = new ComboBox<>();
+
         try {
             DataBaseHandler.getConnection();
-            comboBox1.getItems().addAll(HMap.getArtNameMap().keySet());
+            choiceBox1.getItems().addAll(HMap.getArtNameMap().keySet());
+
+
+            for (Map.Entry<String, String> entry : HMap.getArtNameMap().entrySet()) {
+                String key = entry.getKey();
+                String value = entry.getValue();
+
+                String artImagePath = "/com/example/colculationart/image/art/big_img/" + value + "_5.png";
+                Image artImage = loadImage(artImagePath);
+                ImageView imageViewTemp = new ImageView(artImage);
+                imageViewTemp.setFitWidth(25);
+                imageViewTemp.setPreserveRatio(true);
+
+                HBox hboxTemp = new HBox();
+                Label textTemp = new Label();
+
+                textTemp.setText(key);
+                hboxTemp.getChildren().addAll(imageViewTemp, textTemp);
+
+                comboBox.getItems().add(hboxTemp);
+            }
+            vbox1.getChildren().addAll(comboBox);
+
+
         } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
 
-        comboBox2.getItems().addAll("Sands", "Goblet", "Circlet");
+        comboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
+            System.out.println(comboBox.getValue());
+        });
+
+        choiceBox2.getItems().addAll("Sands", "Goblet", "Circlet");
         vbox2.setDisable(true);
         vbox3.setDisable(true);
         vbox4.setDisable(true);
@@ -111,12 +151,14 @@ public class InsertArtController {
         vbox6.setDisable(true);
         vbox7.setDisable(true);
 
-        // Add a listener to comboBox1's value property
-        comboBox1.valueProperty().addListener((observable, oldValue, newValue) -> {
 
-            boolean isComboBox1NotSelected = (newValue == null || comboBox1.getValue() == null);
+        // Add a listener to comboBox1's value property
+        choiceBox1.valueProperty().addListener((observable, oldValue, newValue) -> {
+
+            boolean isComboBox1NotSelected = (newValue == null || choiceBox1.getValue() == null);
+
             vbox2.setDisable(isComboBox1NotSelected);
-            String selectedValue1 = comboBox1.getValue();
+            String selectedBestArtifact = choiceBox1.getValue();
 
 
 
@@ -129,57 +171,71 @@ public class InsertArtController {
                 clearValuesInVBox(vbox6);
             }
 
-            String artImagePath = "/com/example/colculationart/image/art/" + HMap.getArtNameMap().get(selectedValue1) + ".png";
+            String artImagePath = "/com/example/colculationart/image/art/" + HMap.getArtNameMap().get(selectedBestArtifact) + ".png";
 
             Image artImage = loadImage(artImagePath);
             artImg.setImage(artImage);
 
-            artLabel.setText(selectedValue1);
+            artLabel.setText(selectedBestArtifact);
 
         });
 
-        comboBox2.valueProperty().addListener((observable, oldValue, newValue) -> {
-            boolean isComboBox2NotSelected = (newValue == null || comboBox2.getValue() == null);
-            String selectedArtType = comboBox2.getValue();
+        choiceBox2.valueProperty().addListener((observable, oldValue, newValue) -> {
+            boolean isComboBox2NotSelected = (newValue == null || choiceBox2.getValue() == null);
+            String selectedBestArtifact = choiceBox1.getValue();
+            String selectedArtType = choiceBox2.getValue();
 
-            // Set disable property for other VBox elements based on the condition
             vbox3.setDisable(isComboBox2NotSelected);
             textField1.setDisable(!isComboBox2NotSelected);
             slider1.setDisable(!isComboBox2NotSelected);
 
-
-
             switch (selectedArtType) {
                 case "Circlet" -> {
-                    comboBox3.getItems().addAll("ATK%", "DEF%", "HP%", "Elemental Mastery", "CRIT DMG", "CRIT RATE", "Healing bonus");
+                    choiceBox3.getItems().setAll("ATK%", "DEF%", "HP%", "Elemental Mastery", "CRIT DMG", "CRIT RATE", "Healing bonus");
+
+                    String artImagePath = "/com/example/colculationart/image/art/big_img/" + HMap.getArtNameMap().get(selectedBestArtifact) + "_1.png";
+                    Image artImage = loadImage(artImagePath);
+                    artImg.setImage(artImage);
+
                     artType.setText(selectedArtType);
                 }
                 case "Sands" -> {
-                    comboBox3.getItems().addAll("ATK%", "DEF%", "HP%", "Elemental Mastery", "Energy Recharge");
+                    choiceBox3.getItems().setAll("ATK%", "DEF%", "HP%", "Elemental Mastery", "Energy Recharge");
+
+                    String artImagePath = "/com/example/colculationart/image/art/big_img/" + HMap.getArtNameMap().get(selectedBestArtifact) + "_3.png";
+                    Image artImage = loadImage(artImagePath);
+                    artImg.setImage(artImage);
+
+
                     artType.setText(selectedArtType);
                 }
 
                 case "Goblet" -> {
-                    comboBox3.getItems().addAll("ATK%", "DEF%", "HP%", "Elemental Mastery", "Dendro DMG Bonus", "Anemo DMG Bonus", "Hydro DMG Bonus", "Cryo DMG Bonus", "Physical DMG Bonus", "Pyro DMG Bonus", "Electro DMG Bonus");
+                    choiceBox3.getItems().setAll("ATK%", "DEF%", "HP%", "Elemental Mastery", "Dendro DMG Bonus", "Anemo DMG Bonus", "Hydro DMG Bonus", "Cryo DMG Bonus", "Physical DMG Bonus", "Pyro DMG Bonus", "Electro DMG Bonus");
+
+                    String artImagePath = "/com/example/colculationart/image/art/big_img/" + HMap.getArtNameMap().get(selectedBestArtifact) + "_2.png";
+                    Image artImage = loadImage(artImagePath);
+                    artImg.setImage(artImage);
+
                     artType.setText(selectedArtType);
                 }
             }
 
         });
 
-        comboBox3.valueProperty().addListener((observable, oldValue, newValue) -> {
-            boolean isComboBox3NotSelected = (newValue == null || comboBox3.getValue() == null);
-            String selectedMainStat = comboBox3.getValue();
+        choiceBox3.valueProperty().addListener((observable, oldValue, newValue) -> {
+            boolean isComboBox3NotSelected = (newValue == null || choiceBox3.getValue() == null);
+            String selectedMainStat = choiceBox3.getValue();
             ObservableList<String> statList = FXCollections.observableArrayList(
-                    "ATK", "ATK%", "DEF", "DEF%", "HP", "HP%", "Elemental Mastery", "Energy Recharge"
+                    "ATK", "ATK%", "DEF", "DEF%", "HP", "HP%", "Elemental Mastery", "Energy Recharge", "CRIT DMG", "CRIT RATE"
             );
 
             if (selectedMainStat != null){
                 statList.remove(selectedMainStat);
-                comboBox4.setItems(statList);
-                comboBox5.setItems(statList);
-                comboBox6.setItems(statList);
-                comboBox7.setItems(statList);
+                choiceBox4.setItems(statList);
+                choiceBox5.setItems(statList);
+                choiceBox6.setItems(statList);
+                choiceBox7.setItems(statList);
             }
             vbox4.setDisable(isComboBox3NotSelected);
             textField2.setDisable(!isComboBox3NotSelected);
@@ -201,38 +257,60 @@ public class InsertArtController {
             slider1.setDisable(isComboBox3NotSelected);
         });
 
-        comboBox4.valueProperty().addListener((observable, oldValue, newValue) -> {
-            boolean isComboBox4NotSelected = (newValue == null || comboBox4.getValue() == null);
-            String selectedValue4 = comboBox4.getValue();
+        choiceBox4.valueProperty().addListener((observable, oldValue, newValue) -> {
+            boolean isComboBox4NotSelected = (newValue == null || choiceBox4.getValue() == null);
+            String selectedValue4 = choiceBox4.getValue();
 
             textField2.setDisable(isComboBox4NotSelected);
             slider2.setDisable(isComboBox4NotSelected);
         });
 
-        comboBox5.valueProperty().addListener((observable, oldValue, newValue) -> {
-            boolean isComboBox5NotSelected = (newValue == null || comboBox5.getValue() == null);
-            String selectedValue5 = comboBox5.getValue();
+        choiceBox5.valueProperty().addListener((observable, oldValue, newValue) -> {
+            boolean isComboBox5NotSelected = (newValue == null || choiceBox5.getValue() == null);
+            String selectedValue5 = choiceBox5.getValue();
 
             textField3.setDisable(isComboBox5NotSelected);
             slider3.setDisable(isComboBox5NotSelected);
         });
 
-        comboBox6.valueProperty().addListener((observable, oldValue, newValue) -> {
-            boolean isComboBox6NotSelected = (newValue == null || comboBox6.getValue() == null);
-            String selectedValue6 = comboBox6.getValue();
+        choiceBox6.valueProperty().addListener((observable, oldValue, newValue) -> {
+            boolean isComboBox6NotSelected = (newValue == null || choiceBox6.getValue() == null);
+            String selectedValue6 = choiceBox6.getValue();
 
             textField4.setDisable(isComboBox6NotSelected);
             slider4.setDisable(isComboBox6NotSelected);
         });
 
-        comboBox7.valueProperty().addListener((observable, oldValue, newValue) -> {
-            boolean isComboBox7NotSelected = (newValue == null || comboBox7.getValue() == null);
-            String selectedValue7 = comboBox7.getValue();
+        choiceBox7.valueProperty().addListener((observable, oldValue, newValue) -> {
+            boolean isComboBox7NotSelected = (newValue == null || choiceBox7.getValue() == null);
+            String selectedValue7 = choiceBox7.getValue();
 
             textField5.setDisable(isComboBox7NotSelected);
             slider5.setDisable(isComboBox7NotSelected);
         });
+
+        actionButton.setOnAction(event -> {
+            try {
+                DataBaseHandler.executeQuery(getConnection(), choiceBox1.getValue(), choiceBox2.getValue(), choiceBox3.getValue(), choiceBox4.getValue(), choiceBox5.getValue(), choiceBox6.getValue(), choiceBox7.getValue());
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
+                Parent root = loader.load();
+                HelloController helloController = loader.getController();
+
+                // Передача параметров
+                helloController.initData(choiceBox1.getValue(), choiceBox2.getValue(), choiceBox3.getValue(), choiceBox4.getValue(), choiceBox5.getValue(), choiceBox6.getValue(), choiceBox7.getValue());
+
+                Scene scene = new Scene(root);
+                Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                primaryStage.setScene(scene);
+                primaryStage.show();
+            } catch (IOException | SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
+
+
 
     private Image loadImage(String imagePath) {
         if (getClass().getResource(imagePath) != null) {
@@ -259,4 +337,5 @@ public class InsertArtController {
     private void handleActionButton() {
         // Add your action logic when the button is clicked
     }
+
 }

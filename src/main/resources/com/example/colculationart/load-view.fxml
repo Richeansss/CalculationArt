@@ -6,5 +6,5 @@
 
 <StackPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.colculationart.LoadController">
     <ProgressBar fx:id="progressBar" prefHeight="20" prefWidth="300" />
-    <Label fx:id="characterLabel" text="GG" />
+    <Label fx:id="characterLabel" text="Идет подключение к базе данных" />
 </StackPane>

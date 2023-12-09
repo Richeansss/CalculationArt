@@ -11,7 +11,10 @@ import javafx.scene.control.ProgressBar;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class LoadController implements ProgressBarUpdater {
 
@@ -25,6 +28,7 @@ public class LoadController implements ProgressBarUpdater {
         // Создаем и запускаем задачу
         try {
             DataBaseHandler.getConnection();
+
             Task<Void> task = new Task<>() {
                 @Override
                 protected Void call() {
@@ -54,6 +58,7 @@ public class LoadController implements ProgressBarUpdater {
         }
 
     }
+
 
     @Override
     public void updateProgressBar(double progress, String characterName) {
