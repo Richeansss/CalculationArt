@@ -1,9 +1,8 @@
 module com.example.colculationart {
     requires javafx.controls;
     requires javafx.fxml;
-    requires org.jsoup;
     requires java.sql;
-    requires mysql.connector.j;
+    requires jsoup;
     requires org.apache.commons.io;
 
 

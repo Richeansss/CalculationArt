@@ -31,6 +31,8 @@ public class ParserHtml {
             String url = "https://game8.co/games/Genshin-Impact/archives/" + characterID;
             String outputFilePath = "SoureceDataBase/" + characterName + ".txt"; // Путь к текстовому файлу для сохранения всех таблиц
 
+
+
             try {
                 // Получаем HTML-документ с указанного URL
                 Document doc = Jsoup.connect(url).get();
