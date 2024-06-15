@@ -1,0 +1,48 @@
+BaseHP: BaseAtk: Base Def:
+Albedo BaseHP: 1,029.59 BaseAtk 19.55: Base Def: 68.21
+Alhaitham BaseHP: 1,039.12	 BaseAtk: 24.39 Base Def: 60.85
+Aloy BaseHP: 848.45 BaseAtk: 18.21 Base Def: 52.65
+Amber BaseHP: 793.26	 BaseAtk:  18.70 Base Def: 50.36
+Arataki Itto: BaseHP: 1,000.99	 BaseAtk 17.69 Base Def:74.67
+Arlecchino BaseHP:1,020.05 BaseAtk:26.63 Base Def:59.53
+Baizhu BaseHP:1,039.12 BaseAtk: 14.99 Base Def: 38.89
+Barbara BaseHP:820.61 BaseAtk:13.36 Base Def:56.08
+Beidou BaseHP: 1,094.15 BaseAtk:18.88 Base Def:54.36
+Bennett BaseHP:1,039.44  BaseAtk:16.03  Base Def:64.66
+Candace BaseHP:911.79 BaseAtk:17.81 Base Def:57.23
+Charlotte BaseHP:902.67  BaseAtk: 14.51 Base Def: 45.78
+Chevreuse BaseHP:1,002.97 BaseAtk:16.21 Base Def:50.70
+Chiori BaseHP:890.40 BaseAtk:25.14 Base Def:74.19
+Chongyun BaseHP:920.91 BaseAtk:18.70 Base Def:54.36
+Clorinde BaseHP:1,008.61 BaseAtk: 26.25 Base Def: 61.03
+Collei BaseHP: 820.61 BaseAtk: 16.74 Base Def: 50.36
+Cyno BaseHP:972.39 BaseAtk: 24.76 Base Def: 66.89
+Dehya BaseHP:1,220.25 BaseAtk:20.67 Base Def: 48.88
+Diluc  BaseHP:1,010.52 BaseAtk:26.07 Base Def:61.03
+Diona BaseHP:802.38 BaseAtk:17.81 Base Def: 50.36
+Dori BaseHP:1,039.44 BaseAtk:18.70 Base Def:60.66
+Eula BaseHP: 1,029.59 BaseAtk: 26.63 Base Def: 58.45
+Faruzan BaseHP:802.38 BaseAtk:16.47 Base Def:52.65
+Fischl BaseHP:770.46 BaseAtk:20.48 Base Def:49.79
+Freminet BaseHP:1,012.09 BaseAtk:21.37 Base Def:59.40
+Furina BaseHP:1,191.65 BaseAtk:18.99 Base Def:54.15
+Gaming BaseHP:957.38 BaseAtk:25.29 Base Def:58.94
+Ganyu BaseHP: 762.66 BaseAtk: 26.07 Base Def:49.06
+Gorou BaseHP: 802.38 BaseAtk: 15.31 Base Def: 54.36
+Hu Tao BaseHP:1,210.72 BaseAtk:8.29 Base Def:68.21
+Jean BaseHP: 1,143.98 BaseAtk: 18.62 Base Def: 59.83
+Kaedehara Kazuha BaseHP: 1,039.12 BaseAtk: 23.09 Base Def: 62.82
+Kaeya  BaseHP:975.62 BaseAtk:18.70 Base Def:66.38
+Kamisato Ayaka BaseHP:1,000.99 BaseAtk: 26.63 Base Def:61.03
+Kamisato Ayato BaseHP:1,067.72 BaseAtk:23.28 Base Def:59.83
+Kaveh BaseHP:1,002.97 BaseAtk:19.59 Base Def:62.95
+Keqing BaseHP:1,020.05 BaseAtk: 25.14 Base Def: 62.22
+Kirara BaseHP:1,021.21 BaseAtk:18.70 Base Def:45.78
+Klee BaseHP: 800.79 BaseAtk: 24.21 Base Def:47.86
+Kujou Sara  BaseHP:802.38 BaseAtk:16.38 Base Def:52.65
+Kuki Shinobu BaseHP: 1,030.32 BaseAtk: 17.81 Base Def: 62.95
+Layla  BaseHP:930.03 BaseAtk:18.16 Base Def:54.94
+Lisa BaseHP:802.38	 BaseAtk:19.41 Base Def:48.07
+Lynette BaseHP:1,039.44	 BaseAtk:19.41 Base Def:59.69
+
+
