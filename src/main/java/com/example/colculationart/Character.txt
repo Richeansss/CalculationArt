@@ -2,7 +2,7 @@ BaseHP: BaseAtk: Base Def:
 Albedo BaseHP: 1,029.59 BaseAtk 19.55: Base Def: 68.21
 Alhaitham BaseHP: 1,039.12	 BaseAtk: 24.39 Base Def: 60.85
 Aloy BaseHP: 848.45 BaseAtk: 18.21 Base Def: 52.65
-Amber BaseHP: 793.26	 BaseAtk:  18.70 Base Def: 50.36
+Amber BaseHP: 793.26 BaseAtk:  18.70 Base Def: 50.36
 Arataki Itto: BaseHP: 1,000.99	 BaseAtk 17.69 Base Def:74.67
 Arlecchino BaseHP:1,020.05 BaseAtk:26.63 Base Def:59.53
 Baizhu BaseHP:1,039.12 BaseAtk: 14.99 Base Def: 38.89
@@ -44,5 +44,43 @@ Kuki Shinobu BaseHP: 1,030.32 BaseAtk: 17.81 Base Def: 62.95
 Layla  BaseHP:930.03 BaseAtk:18.16 Base Def:54.94
 Lisa BaseHP:802.38	 BaseAtk:19.41 Base Def:48.07
 Lynette BaseHP:1,039.44	 BaseAtk:19.41 Base Def:59.69
+Lyney BaseHP:857.99 BaseAtk:24.76 Base Def:41.88
+Mika BaseHP:1,048.56 BaseAtk:18.70 Base Def:59.80
+Mona BaseHP:810.32 BaseAtk:22.34 Base Def:50.86
+Nahida BaseHP:806.51 BaseAtk:23.28	 Base Def:49.06
+Navia BaseHP:984.78 BaseAtk:27.37 Base Def:61.74
+Neuvillette BaseHP:1,143.98 BaseAtk:16.22 Base Def:44.87
+Nilou BaseHP:1,182.12 BaseAtk:17.88 Base Def:56.72
+Ningguang BaseHP:820.61 BaseAtk:17.81 Base Def:48.07
+Noelle BaseHP:1,012.09 BaseAtk:16.03 Base Def:66.95
+Qiqi BaseHP:962.85 BaseAtk:22.34 Base Def:71.80
+Raiden Shogun BaseHP:1,004.80 BaseAtk:26.25 Base Def:61.45
+Razor BaseHP:1,002.97 BaseAtk:19.59 Base Def:62.95
+Rosaria BaseHP:1,030.32 BaseAtk:20.12 Base Def:59.51
+Sangonomiya Kokomi BaseHP:1,048.65 BaseAtk:18.25 Base Def:51.15
+Sayu BaseHP:993.85 BaseAtk:20.48 Base Def:62.43
+Sethos BaseHP:820.61 BaseAtk:19.05 Base Def:46.92
+Shenhe BaseHP:1,011.47 BaseAtk:23.65 Base Def:64.62
+Shikanoin Heizou BaseHP:893.56 BaseAtk:18.88 Base Def:57.34
+Sucrose BaseHP:775.02 BaseAtk:14.25 Base Def:58.94
+Tartaglia BaseHP:1,020.05 BaseAtk:23.46 Base Def:63.42
+Thoma BaseHP:866.20 BaseAtk:16.92 Base Def:62.95
+Tighnari BaseHP:844.64 BaseAtk:20.85 Base Def:49.06
+Traveler BaseHP:911.79 BaseAtk:17.81 Base Def:57.23
+Venti BaseHP:819.86 BaseAtk:20.48 Base Def:52.05
+Wanderer BaseHP:791.26 BaseAtk:25.51 Base Def:47.27
+Wriothesley BaseHP:1,058.19 BaseAtk:24.21 Base Def:59.41
+Xiangling BaseHP:911.79 BaseAtk:18.88 Base Def:56.08
+Xianyun BaseHP:810.32 BaseAtk:26.07 Base Def:44.57
+Xiao BaseHP:991.45 BaseAtk:27.19 Base Def:62.22
+Xingqiu BaseHP:857.08 BaseAtk:16.92 Base Def:63.52
+Xinyan BaseHP:939.14 BaseAtk:20.84 Base Def:66.95
+Yae Miko BaseHP:807.46 BaseAtk:26.44 Base Def:44.27
+Yanfei BaseHP:784.14 BaseAtk:20.12 Base Def:49.21
+Yaoyao BaseHP:1,030.32 BaseAtk:17.81 Base Def:62.95
+Yelan BaseHP:1,124.92 BaseAtk:18.99 Base Def:42.66
+Yoimiya BaseHP:791.26 BaseAtk:25.14 Base Def:47.86
+Yun Jin BaseHP:893.56 BaseAtk:16.03 Base Def:61.57
+Zhongli BaseHP:1,143.98 BaseAtk:19.55 Base Def:57.44
 
 
