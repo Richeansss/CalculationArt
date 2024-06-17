@@ -9,6 +9,7 @@ module com.example.colculationart {
     requires java.naming;
     requires static lombok;
     requires jakarta.persistence;
+    requires jakarta.transaction;
 
 
     opens com.example.colculationart to javafx.fxml;
