@@ -45,6 +45,7 @@
             <version>2.2</version> <!-- Или другая версия, совместимая с вашим проектом -->
         </dependency>
 
+
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
