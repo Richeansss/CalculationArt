@@ -1,6 +1,5 @@
 package com.example.colculationart;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -16,7 +15,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.ArrayList;
 import java.util.Objects;
 
 import static com.example.colculationart.DataBaseHandler.getConnection;
