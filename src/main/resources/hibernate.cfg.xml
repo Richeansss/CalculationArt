@@ -36,6 +36,12 @@
         <!-- Mapping class -->
         <mapping class="com.example.colculationart.hibernate.entity.CharacterStats" />
         <mapping class="com.example.colculationart.hibernate.entity.StatsAscensionValues"/>
+
+        <mapping class="com.example.colculationart.hibernate.entity.TypeOfWeapon"/>
+        <mapping class="com.example.colculationart.hibernate.entity.Element"/>
+        <mapping class="com.example.colculationart.hibernate.entity.Quality"/>
+        <mapping class="com.example.colculationart.hibernate.entity.Region"/>
+
     </session-factory>
 
 </hibernate-configuration>
