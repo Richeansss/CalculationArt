@@ -1,4 +1,4 @@
-package com.example.colculationart;
+package com.example.colculationart.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

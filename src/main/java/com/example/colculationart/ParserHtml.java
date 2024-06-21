@@ -1,7 +1,5 @@
 package com.example.colculationart;
-import javafx.application.Platform;
-import javafx.fxml.FXML;
-import javafx.scene.control.ProgressBar;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

@@ -1,5 +1,8 @@
-package com.example.colculationart;
+package com.example.colculationart.controller;
 
+import com.example.colculationart.DataBaseHandler;
+import com.example.colculationart.HMap;
+import com.example.colculationart.Tables;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;

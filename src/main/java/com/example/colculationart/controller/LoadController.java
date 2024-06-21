@@ -1,5 +1,8 @@
-package com.example.colculationart;
+package com.example.colculationart.controller;
 
+import com.example.colculationart.DataBaseHandler;
+import com.example.colculationart.ParserHtml;
+import com.example.colculationart.ProgressBarUpdater;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -11,10 +14,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class LoadController implements ProgressBarUpdater {
 

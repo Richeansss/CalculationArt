@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="200.0" minWidth="200.0" prefHeight="713.0" prefWidth="700.0" style="-fx-background-color: #2c4d55;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.colculationart.InsertArtController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="200.0" minWidth="200.0" prefHeight="713.0" prefWidth="700.0" style="-fx-background-color: #2c4d55;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.colculationart.controller.InsertArtController">
    <children>
       <AnchorPane layoutX="10.0" layoutY="19.0" prefHeight="78.0" prefWidth="822.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="-10.0">
          <children>

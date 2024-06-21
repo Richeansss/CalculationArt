@@ -9,7 +9,7 @@ module com.example.colculationart {
     requires java.naming;
     requires static lombok;
     requires jakarta.persistence;
-
+    requires org.slf4j;
 
 
     opens com.example.colculationart to javafx.fxml;
@@ -19,4 +19,6 @@ module com.example.colculationart {
     opens com.example.colculationart.hibernate.entity to org.hibernate.orm.core;
     exports com.example.colculationart.test;
     opens com.example.colculationart.test to javafx.fxml;
+    exports com.example.colculationart.controller;
+    opens com.example.colculationart.controller to javafx.fxml;
 }
