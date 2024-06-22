@@ -10,6 +10,7 @@ module com.example.colculationart {
     requires static lombok;
     requires jakarta.persistence;
     requires org.slf4j;
+    requires mysql.connector.j;
 
 
     opens com.example.colculationart to javafx.fxml;

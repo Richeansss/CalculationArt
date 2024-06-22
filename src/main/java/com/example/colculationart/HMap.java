@@ -2,7 +2,6 @@ package com.example.colculationart;
 
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class  HMap {
     public static HashMap<Integer, String> getUiMap(){
@@ -243,7 +242,6 @@ public class  HMap {
         characterIDs.put("305858", "Zhongli");
         characterIDs.put("Wriothesley-Best-Builds", "Wriothesley");
         characterIDs.put("Neuvillette-Best-Builds", "Neuvillette");
-        characterIDs.put("Furina-Best-Builds", "Furina");
         characterIDs.put("Furina-Best-Builds", "Furina");
         characterIDs.put("412428", "Charlotte");
         return characterIDs;

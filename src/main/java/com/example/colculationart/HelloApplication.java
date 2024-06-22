@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -12,72 +14,99 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Главный класс JavaFX приложения.
+ */
 public class HelloApplication extends Application {
+    private static final Logger logger = LoggerFactory.getLogger(HelloApplication.class);
+
+    /**
+     * Запускает JavaFX приложение.
+     *
+     * <p>Метод выполняет следующие шаги:
+     * <ul>
+     *     <li>Устанавливает соединение с базой данных.</li>
+     *     <li>Проверяет наличие записей в таблице 'heroes'.</li>
+     *     <li>Загружает соответствующий FXML файл в зависимости от наличия записей в таблице.</li>
+     *     <li>Создает и отображает основное окно приложения.</li>
+     * </ul>
+     *
+     * @param stage основной контейнер для всех элементов JavaFX.
+     */
     @Override
-    public void start(Stage stage) throws IOException, SQLException {
+    public void start(Stage stage) {
+        Connection connection = null;
+        try {
+            connection = DatabaseConnection.getConnection();
 
-        if(hasRecordsInHeroesTable(DataBaseHandler.getConnection())) {
-            FXMLLoader CharacterLoader = new FXMLLoader(HelloApplication.class.getResource("insertArt-view.fxml"));
+            boolean hasRecords = hasRecordsInHeroesTable(connection);
 
-            Parent root = CharacterLoader.load();
+            FXMLLoader characterLoader = new FXMLLoader(HelloApplication.class.getResource(hasRecords ? "insertArt-view.fxml" : "load-view.fxml"));
+            Parent root = characterLoader.load();
             Scene characterScene = new Scene(root);
-            Stage stage1 = new Stage();
 
-            stage1.setTitle("Calculation Art");
-            stage1.setMinWidth(750); // Устанавливаем минимальную ширину
-            stage1.setMinHeight(730); // Устанавливаем минимальную высоту
-            stage1.setScene(characterScene);
+            stage.setTitle("Calculation Art");
+            stage.setMinWidth(750); // Устанавливаем минимальную ширину
+            stage.setMinHeight(730); // Устанавливаем минимальную высоту
+            stage.setScene(characterScene);
 
-// Устанавливаем размер окна по содержимому
-            stage1.sizeToScene();
-
-            stage1.show();
-        }else {
-            FXMLLoader CharacterLoader = new FXMLLoader(HelloApplication.class.getResource("load-view.fxml"));
-
-            Parent root = CharacterLoader.load();
-            Scene characterScene = new Scene(root);
-            Stage stage1 = new Stage();
-
-            stage1.setTitle("Calculation Art");
-            stage1.setMinWidth(750); // Устанавливаем минимальную ширину
-            stage1.setMinHeight(730); // Устанавливаем минимальную высоту
-            stage1.setScene(characterScene);
-
-// Устанавливаем размер окна по содержимому
-            stage1.sizeToScene();
-
-            stage1.show();
+            // Устанавливаем размер окна по содержимому
+            stage.sizeToScene();
+            stage.show();
+        } catch (IOException e) {
+            logger.error("Произошла ошибка при запуске приложения", e);
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    logger.error("Не удалось закрыть соединение с базой данных", e);
+                }
+            }
         }
     }
 
-
+    /**
+     * Проверяет наличие записей в таблице 'heroes'.
+     *
+     * @param connection объект {@link Connection}, представляющий соединение с базой данных.
+     * @return {@code true}, если в таблице 'heroes' есть записи, иначе {@code false}.
+     */
     private boolean hasRecordsInHeroesTable(Connection connection) {
-        // Ваш SQL-запрос для проверки наличия записей в таблице "heroes"
         String query = "SELECT COUNT(*) FROM heroes";
 
-        try (Statement statement = connection.createStatement()) {
-            try (ResultSet resultSet = statement.executeQuery(query)) {
-                // Если есть хотя бы одна запись, вернуть true
-                if (resultSet.next()) {
-                    return resultSet.getInt(1) > 0;
-                }
+        try (Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+
+            if (resultSet.next()) {
+                return resultSet.getInt(1) > 0;
             }
         } catch (SQLException e) {
-            // Возможная ошибка при выполнении запроса
-            if (e.getMessage().toLowerCase().contains("table 'heroes' doesn't exist")) {
-                // Если таблицы не существует, вывести сообщение, но продолжить выполнение кода
-                System.out.println("Таблица 'heroes' не существует");
+            if (tableDoesNotExist(e)) {
+                logger.info("Таблица 'heroes' не существует");
             } else {
-                // Если возникла другая ошибка, вывести сообщение и перебросить ее
-                e.printStackTrace();
+                logger.error("Ошибка при проверке записей в таблице 'heroes'", e);
             }
         }
 
-        // Если нет записей (и не было ошибок), вернуть false
         return false;
     }
 
+    /**
+     * Проверяет, существует ли таблица 'heroes' в базе данных.
+     *
+     * @param e исключение {@link SQLException}, выброшенное при попытке доступа к таблице.
+     * @return {@code true}, если таблица 'heroes' не существует, иначе {@code false}.
+     */
+    private boolean tableDoesNotExist(SQLException e) {
+        return e.getMessage().toLowerCase().contains("table 'heroes' doesn't exist");
+    }
+
+    /**
+     * Главный метод, запускающий JavaFX приложение.
+     *
+     * @param args аргументы командной строки.
+     */
     public static void main(String[] args) {
         launch();
     }

@@ -9,7 +9,7 @@ public class Tables {
     public static void getConnectionResetAndCreate() {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
-            try (Connection conn = DataBaseHandler.getConnection()){
+            try (Connection conn = DatabaseConnection.getConnection()){
                 System.out.println("Connection to Store DB succesfull!");
 
                 dropHeroesTable(conn);

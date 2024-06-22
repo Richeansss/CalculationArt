@@ -1,6 +1,7 @@
 package com.example.colculationart.controller;
 
 import com.example.colculationart.DataBaseHandler;
+import com.example.colculationart.DatabaseConnection;
 import com.example.colculationart.HMap;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,9 +22,7 @@ import java.sql.SQLException;
 import java.util.Map;
 import java.util.Objects;
 
-import static com.example.colculationart.DataBaseHandler.getConnection;
-
-import javafx.scene.control.ChoiceBox;  // Импорт ChoiceBox вместо ComboBox
+import static com.example.colculationart.DatabaseConnection.getConnection;
 
 public class InsertArtController {
 
@@ -111,7 +110,7 @@ public class InsertArtController {
         ComboBox<HBox> comboBox = new ComboBox<>();
 
         try {
-            DataBaseHandler.getConnection();
+            DatabaseConnection.getConnection();
             choiceBox1.getItems().addAll(HMap.getArtNameMap().keySet());
 
 
@@ -136,7 +135,7 @@ public class InsertArtController {
             vbox1.getChildren().addAll(comboBox);
 
 
-        } catch (SQLException | IOException e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
 

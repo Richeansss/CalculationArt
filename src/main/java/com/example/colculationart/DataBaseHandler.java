@@ -1,11 +1,8 @@
 package com.example.colculationart;
-import java.nio.file.*;
-import java.io.*;
 import java.util.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -15,7 +12,7 @@ public class DataBaseHandler {
     public static void InsertToDB(String characterName) {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
-            try (Connection conn = getConnection()){
+            try (Connection conn = DatabaseConnection.getConnection()){
 
                 System.out.println("Connection to Store DB succesfull!");
 
@@ -345,19 +342,6 @@ public class DataBaseHandler {
 
             System.out.println(ex);
         }
-    }
-
-    public static Connection getConnection() throws SQLException, IOException{
-
-        Properties props = new Properties();
-        try(InputStream in = Files.newInputStream(Paths.get("database.properties.txt"))){
-            props.load(in);
-        }
-        String url = props.getProperty("url");
-        String username = props.getProperty("username");
-        String password = props.getProperty("password");
-
-        return DriverManager.getConnection(url, username, password);
     }
 
     public static void executeQuery(Connection connection, String bestArtifact, String artifactType, String mainStat, String subStat1, String subStat2, String subStat3, String subStat4) throws SQLException {

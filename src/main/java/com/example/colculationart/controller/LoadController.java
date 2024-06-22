@@ -1,6 +1,6 @@
 package com.example.colculationart.controller;
 
-import com.example.colculationart.DataBaseHandler;
+import com.example.colculationart.DatabaseConnection;
 import com.example.colculationart.ParserHtml;
 import com.example.colculationart.ProgressBarUpdater;
 import javafx.application.Platform;
@@ -14,7 +14,6 @@ import javafx.scene.control.ProgressBar;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 public class LoadController implements ProgressBarUpdater {
 
@@ -27,7 +26,7 @@ public class LoadController implements ProgressBarUpdater {
     public void initialize() {
         // Создаем и запускаем задачу
         try {
-            DataBaseHandler.getConnection();
+            DatabaseConnection.getConnection();
 
             Task<Void> task = new Task<>() {
                 @Override
@@ -50,9 +49,6 @@ public class LoadController implements ProgressBarUpdater {
                 // Выполните ваш код для открытия новой страницы здесь
                 openNewPage();
             });
-        } catch (SQLException e) {
-            progressBar.setVisible(false);
-            characterLabel.setText("Нет подключения к базе данных");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

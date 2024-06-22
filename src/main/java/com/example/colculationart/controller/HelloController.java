@@ -1,6 +1,7 @@
 package com.example.colculationart.controller;
 
 import com.example.colculationart.DataBaseHandler;
+import com.example.colculationart.DatabaseConnection;
 import com.example.colculationart.HMap;
 import com.example.colculationart.Tables;
 import javafx.fxml.FXML;
@@ -20,7 +21,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Objects;
 
-import static com.example.colculationart.DataBaseHandler.getConnection;
+import static com.example.colculationart.DatabaseConnection.getConnection;
 
 
 public class HelloController {
@@ -123,7 +124,7 @@ public class HelloController {
         });
         refrashTablesButton.setOnAction(event -> {
             try {
-                Tables.dropPerfectArtTable(DataBaseHandler.getConnection());
+                Tables.dropPerfectArtTable(DatabaseConnection.getConnection());
                 Tables.dropBadTable(getConnection());
                 Tables.dropSoSoTable(getConnection());
                 Tables.dropCompatibilityTable(getConnection());
@@ -137,7 +138,7 @@ public class HelloController {
     }
 
     private void processResultSet(String mainTableName, String relatedTableName, TilePane tilePane) {
-        try (Connection connection = DataBaseHandler.getConnection()) {
+        try (Connection connection = DatabaseConnection.getConnection()) {
             String sql;
             if (relatedTableName != null) {
                 sql = String.format("SELECT DISTINCT * FROM %s WHERE NOT EXISTS ( SELECT 1 FROM %s WHERE %s.SetName = %s.SetName)",
