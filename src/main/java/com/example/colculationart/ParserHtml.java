@@ -1,35 +1,45 @@
 package com.example.colculationart;
 
+import lombok.Setter;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Класс для парсинга HTML-страниц и сохранения информации о персонажах.
+ */
+
+@Setter
 public class ParserHtml {
 
+    private static final Logger logger = LoggerFactory.getLogger(ParserHtml.class);
     private ProgressBarUpdater progressBarUpdater;
 
-    public void setProgressBarUpdater(ProgressBarUpdater updater) {
-        this.progressBarUpdater = updater;
-    }
-
+    /**
+     * Метод для парсинга информации о каждом персонаже и сохранения данных в текстовый файл.
+     *
+     * @param parserHtml объект ParserHtml для обновления прогресс-бара
+     */
     public static void PerCharacter(ParserHtml parserHtml) {
         HashMap<String, String> characterIDs = HMap.getCharactersID();
         Tables.getConnectionResetAndCreate();
         int totalCharacters = characterIDs.size();
         int currentCharacter = 0;
+
         for (Map.Entry<String, String> entry : characterIDs.entrySet()) {
             String characterID = entry.getKey();
             String characterName = entry.getValue();
 
             String url = "https://game8.co/games/Genshin-Impact/archives/" + characterID;
             String outputFilePath = "SoureceDataBase/" + characterName + ".txt"; // Путь к текстовому файлу для сохранения всех таблиц
-
-
 
             try {
                 // Получаем HTML-документ с указанного URL
@@ -70,14 +80,11 @@ public class ParserHtml {
 
                 DataBaseHandler.InsertToDB(characterName);
 
-                System.out.println("Таблицы и их заголовки успешно сохранены в файл: " + outputFilePath);
-
+                logger.info("Таблицы и их заголовки успешно сохранены в файл: {}", outputFilePath);
 
             } catch (IOException e) {
-                e.printStackTrace();
+                logger.error("Ошибка при обработке персонажа {}: {}", characterName, e.getMessage());
             }
-
-
 
             currentCharacter++;
             double progress = (double) currentCharacter / totalCharacters;
