@@ -14,6 +14,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Map;
 
+/**
+ * Класс для парсинга доступных изображений персонажей из таблицы на веб-странице.
+ * Сохраняет изображения персонажей в локальную директорию.
+ */
+
 public class ParserAvailableImageCharacter {
 
     private static final Logger logger = LoggerFactory.getLogger(ParserAvailableImageCharacter.class);
@@ -83,6 +88,15 @@ public class ParserAvailableImageCharacter {
             logger.error("Ошибка при обработке страницы", e);
         }
     }
+
+    /**
+     * Сохраняет изображение по заданному URL в локальную директорию.
+     *
+     * @param imageUrl    URL изображения
+     * @param altText     Альтернативный текст (имя персонажа), используемый в качестве имени файла
+     * @param outputFolder Директория для сохранения изображений
+     * @param cookies     Cookies для соединения
+     */
 
     private static void saveImage(String imageUrl, String altText, File outputFolder, Map<String, String> cookies) {
         try {
