@@ -12,21 +12,30 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
+/**
+ * Контроллер для загрузочного экрана.
+ */
 public class LoadController implements ProgressBarUpdater {
+
+    private static final Logger logger = LoggerFactory.getLogger(LoadController.class);
 
     @FXML
     private ProgressBar progressBar;
     @FXML
     private Label characterLabel;
 
-
+    /**
+     * Инициализация контроллера.
+     * Запускает процесс загрузки данных и отображения прогресса.
+     */
     public void initialize() {
-        // Создаем и запускаем задачу
         try {
-            DatabaseConnection.getConnection();
+            DatabaseConnection.getConnection(); // Подключение к базе данных
 
             Task<Void> task = new Task<>() {
                 @Override
@@ -34,28 +43,34 @@ public class LoadController implements ProgressBarUpdater {
                     ParserHtml parserHtml = new ParserHtml();
                     parserHtml.setProgressBarUpdater(LoadController.this);
 
-                    // Запуск функции с передачей экземпляра контроллера
+                    // Запуск парсинга с передачей экземпляра контроллера
                     ParserHtml.PerCharacter(parserHtml);
 
                     return null;
                 }
             };
 
-            // Запускаем задачу в отдельном потоке
+            // Запуск задачи в отдельном потоке
             Thread thread = new Thread(task);
             thread.start();
 
+            // Обработка завершения задачи
             task.setOnSucceeded(e -> {
-                // Выполните ваш код для открытия новой страницы здесь
+                // Выполнение действий при успешном завершении задачи (например, открытие новой страницы)
                 openNewPage();
             });
         } catch (IOException e) {
+            logger.error("Ошибка при инициализации загрузочного контроллера", e);
             throw new RuntimeException(e);
         }
-
     }
 
-
+    /**
+     * Метод обновления прогресса загрузки данных.
+     *
+     * @param progress      текущий прогресс (от 0 до 1)
+     * @param characterName имя обрабатываемого персонажа
+     */
     @Override
     public void updateProgressBar(double progress, String characterName) {
         // Обновление прогресс-бара в потоке JavaFX
@@ -65,26 +80,28 @@ public class LoadController implements ProgressBarUpdater {
         });
     }
 
+    /**
+     * Открытие новой страницы после завершения загрузки данных.
+     */
     private void openNewPage() {
         try {
-            // Загружаем FXML-файл
+            // Загрузка FXML-файла новой страницы
             FXMLLoader loader = new FXMLLoader(getClass().getResource("insertArt-view.fxml"));
             Parent root = loader.load();
 
-            // Создаем новую сцену
+            // Создание новой сцены
             Scene scene = new Scene(root);
 
-            // Получаем текущий Stage
+            // Получение текущего Stage
             Stage currentStage = (Stage) progressBar.getScene().getWindow();
 
-            // Заменяем сцену на новую
+            // Замена текущей сцены на новую
             currentStage.setScene(scene);
 
-            // Показываем новую сцену
+            // Показ новой сцены
             currentStage.show();
         } catch (IOException ex) {
-            ex.printStackTrace();
-            // Обработка ошибок при загрузке FXML
+            logger.error("Ошибка при открытии новой страницы", ex);
         }
     }
 }
