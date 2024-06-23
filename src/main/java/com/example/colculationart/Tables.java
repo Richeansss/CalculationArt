@@ -1,35 +1,56 @@
 package com.example.colculationart;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Управление созданием и удалением таблиц в базе данных.
+ */
 public class Tables {
 
+    private static final Logger logger = LoggerFactory.getLogger(Tables.class);
+
+    /**
+     * Устанавливает соединение с базой данных, удаляет существующую таблицу Heroes и создает новую таблицу Heroes.
+     */
     public static void getConnectionResetAndCreate() {
-        try{
+        try {
             Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
-            try (Connection conn = DatabaseConnection.getConnection()){
-                System.out.println("Connection to Store DB succesfull!");
+            Connection conn = DatabaseConnection.getConnection();
+            if (conn != null) {
+                try (conn) {
+                    logger.info("Connection to database established successfully.");
 
-                dropHeroesTable(conn);
-                //dropCompatibilityTable(conn);
-                //dropPerfectArtTable(conn);
-                //dropSoSoTable(conn);
-                //dropBadTable(conn);
+                    dropHeroesTable(conn);
+                    // Дополнительные методы для удаления других таблиц
+                    // dropCompatibilityTable(conn);
+                    // dropPerfectArtTable(conn);
+                    // dropSoSoTable(conn);
+                    // dropBadTable(conn);
 
-                System.out.println("Table erase");
+                    logger.info("Existing table 'Heroes' dropped.");
 
-                createHeroesTable(conn);
+                    createHeroesTable(conn);
+                }
+                // Всегда закрываем соединение в блоке finally
+            } else {
+                logger.error("Failed to establish database connection.");
             }
-        }
-        catch(Exception ex){
-            System.out.println("Connection failed...");
-
-            System.out.println(ex);
+        } catch (Exception ex) {
+            logger.error("Failed to establish database connection or execute SQL statements.", ex);
         }
     }
 
+    /**
+     * Создает таблицу Heroes в базе данных.
+     *
+     * @param connection соединение с базой данных
+     * @throws SQLException если происходит ошибка при выполнении SQL-запроса
+     */
     private static void createHeroesTable(Connection connection) throws SQLException {
         String createTableQuery = "CREATE TABLE IF NOT EXISTS Heroes ("
                 + "id INT AUTO_INCREMENT PRIMARY KEY,"
@@ -49,6 +70,12 @@ public class Tables {
         }
     }
 
+    /**
+     * Удаляет таблицу Heroes из базы данных, если она существует.
+     *
+     * @param connection соединение с базой данных
+     * @throws SQLException если происходит ошибка при выполнении SQL-запроса
+     */
     public static void dropHeroesTable(Connection connection) throws SQLException {
         String dropTableQuery = "DROP TABLE IF EXISTS Heroes";
 
@@ -57,13 +84,28 @@ public class Tables {
         }
     }
 
-    public static void dropPerfectArtTable(Connection connection)throws SQLException{
+    // Добавление методов для удаления других таблиц (dropPerfectArtTable, dropSoSoTable, dropBadTable, dropCompatibilityTable)
+
+    /**
+     * Удаляет таблицу PerfectArt из базы данных, если она существует.
+     *
+     * @param connection соединение с базой данных
+     * @throws SQLException если происходит ошибка при выполнении SQL-запроса
+     */
+    public static void dropPerfectArtTable(Connection connection) throws SQLException {
         String dropTableQuery = "DROP TABLE IF EXISTS PerfectArt";
 
         try (Statement statement = connection.createStatement()) {
             statement.execute(dropTableQuery);
         }
     }
+
+    /**
+     * Удаляет таблицу SoSo из базы данных, если она существует.
+     *
+     * @param connection соединение с базой данных
+     * @throws SQLException если происходит ошибка при выполнении SQL-запроса
+     */
     public static void dropSoSoTable(Connection connection) throws SQLException {
         String dropTableQuery = "DROP TABLE IF EXISTS SoSo";
 
@@ -72,6 +114,12 @@ public class Tables {
         }
     }
 
+    /**
+     * Удаляет таблицу Bad из базы данных, если она существует.
+     *
+     * @param connection соединение с базой данных
+     * @throws SQLException если происходит ошибка при выполнении SQL-запроса
+     */
     public static void dropBadTable(Connection connection) throws SQLException {
         String dropTableQuery = "DROP TABLE IF EXISTS Bad";
 
@@ -80,6 +128,12 @@ public class Tables {
         }
     }
 
+    /**
+     * Удаляет таблицу Compatibility из базы данных, если она существует.
+     *
+     * @param connection соединение с базой данных
+     * @throws SQLException если происходит ошибка при выполнении SQL-запроса
+     */
     public static void dropCompatibilityTable(Connection connection) throws SQLException {
         String dropTableQuery = "DROP TABLE IF EXISTS Compatibility";
 

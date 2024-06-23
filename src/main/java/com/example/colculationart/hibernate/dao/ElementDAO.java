@@ -6,4 +6,5 @@ public class ElementDAO extends GenericDAO<Element> {
     public ElementDAO() {
         super(Element.class);
     }
+
 }

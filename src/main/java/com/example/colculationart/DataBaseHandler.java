@@ -344,7 +344,7 @@ public class DataBaseHandler {
         }
     }
 
-    public static void executeQuery(Connection connection, String bestArtifact, String artifactType, String mainStat, String subStat1, String subStat2, String subStat3, String subStat4) throws SQLException {
+        public static void executeQuery(Connection connection, String bestArtifact, String artifactType, String mainStat, String subStat1, String subStat2, String subStat3, String subStat4) throws SQLException {
 //--------------------------------------------(1 set 1 mainstat 4 substat) -----------------------------------------------------------------//
         // Создаем таблицу PerfectArt, если она не существует
         String createTablePerfect = "CREATE TABLE IF NOT EXISTS PerfectArt AS " +
