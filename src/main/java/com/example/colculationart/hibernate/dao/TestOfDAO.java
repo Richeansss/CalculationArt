@@ -1,5 +1,9 @@
 package com.example.colculationart.hibernate.dao;
 
+import com.example.colculationart.hibernate.dao.onefieldtable.ElementDAO;
+import com.example.colculationart.hibernate.dao.onefieldtable.QualityDAO;
+import com.example.colculationart.hibernate.dao.onefieldtable.RegionDAO;
+import com.example.colculationart.hibernate.dao.onefieldtable.TypeOfWeaponDAO;
 import com.example.colculationart.hibernate.entity.Element;
 import com.example.colculationart.hibernate.entity.Quality;
 import com.example.colculationart.hibernate.entity.Region;

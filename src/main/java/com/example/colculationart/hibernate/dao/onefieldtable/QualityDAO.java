@@ -1,4 +1,4 @@
-package com.example.colculationart.hibernate.dao;
+package com.example.colculationart.hibernate.dao.onefieldtable;
 
 import com.example.colculationart.hibernate.entity.Quality;
 

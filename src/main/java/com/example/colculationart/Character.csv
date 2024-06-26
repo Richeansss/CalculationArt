@@ -1,4 +1,4 @@
-"Name","Base HP","Base Atk","Base Def","Quality","Element","Weapon","Region","Model Type","Release Date","Version"
+"name","baseHP","baseAtk","baseDef","quality","element","weapon","region","modelType","ReleaseDate","version"
 "Albedo","1,029.59","19.55","68.21","5 Stars","Geo","Sword","Mondstadt","Medium Male","December 23, 2020","1-Feb"
 "Alhaitham","1,039.12","24.39","60.85","5 Stars","Dendro","Sword","Sumeru","Tall Male","January 18, 2023","3-Apr"
 "Aloy","848.45","18.21","52.65","5 Stars","Cryo","Bow","None","Medium Female","September 01, 2021","2-Jan"

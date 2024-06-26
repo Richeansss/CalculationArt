@@ -31,4 +31,20 @@ public class CharacterStats {
     @Column(name = "baseER")
     private double baseER;
 
+    @ManyToOne
+    @JoinColumn(name = "element_id")
+    private Element element;
+
+    @ManyToOne
+    @JoinColumn(name = "quality_id")
+    private Quality quality;
+
+    @ManyToOne
+    @JoinColumn(name = "region_id")
+    private Region region;
+
+    @ManyToOne
+    @JoinColumn(name = "type_of_weapon_id")
+    private TypeOfWeapon typeOfWeapon;
 }
+

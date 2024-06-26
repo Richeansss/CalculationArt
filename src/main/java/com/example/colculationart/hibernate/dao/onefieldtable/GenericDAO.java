@@ -1,4 +1,4 @@
-package com.example.colculationart.hibernate.dao;
+package com.example.colculationart.hibernate.dao.onefieldtable;
 
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -159,6 +159,28 @@ public class GenericDAO<T> {
         } catch (Exception e) {
             logger.error("Ошибка при проверке существования сущности по имени", e);
             return false;
+        }
+    }
+
+    /**
+     * Возвращает сущность по имени.
+     *
+     * @param name Имя сущности.
+     * @return Сущность с указанным именем или null, если сущность не найдена.
+     */
+    public T getByName(String name) {
+        try (Session session = sessionFactory.openSession()) {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<T> query = builder.createQuery(entityClass);
+            Root<T> root = query.from(entityClass);
+
+            query.select(root)
+                    .where(builder.equal(root.get("name"), name));
+
+            return session.createQuery(query).getSingleResult();
+        } catch (Exception e) {
+            logger.error("Ошибка при получении сущности по имени", e);
+            return null;
         }
     }
 }
