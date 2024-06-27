@@ -17,35 +17,32 @@ public class TestCharacterStatTable {
         CharacterStatsDAO characterStatsDAO = new CharacterStatsDAO();
 
         // Проверяем существование и получаем элемент
-        String elementName = "Fire";
+        String elementName = "Geo";
         Element element;
         if (elementDAO.existsByName(elementName)) {
             element = elementDAO.getByName(elementName);
         } else {
-            element = new Element();
-            element.setName(elementName);
-            elementDAO.addEntity(element);
+            element = null;
+            System.out.println("doesn't exits");
         }
 
         // Аналогично для остальных сущностей
-        String qualityName = "High";
+        String qualityName = "5 star";
         Quality quality;
         if (qualityDAO.existsByName(qualityName)) {
             quality = qualityDAO.getByName(qualityName);
         } else {
-            quality = new Quality();
-            quality.setName(qualityName);
-            qualityDAO.addEntity(quality);
+            quality = null;
+            System.out.println("doesn't exits");
         }
 
-        String regionName = "North";
+        String regionName = "Liyue";
         Region region;
         if (regionDAO.existsByName(regionName)) {
             region = regionDAO.getByName(regionName);
         } else {
-            region = new Region();
-            region.setName(regionName);
-            regionDAO.addEntity(region);
+            region = null;
+            System.out.println("doesn't exits");
         }
 
         String typeOfWeaponName = "Sword";
@@ -53,9 +50,8 @@ public class TestCharacterStatTable {
         if (typeOfWeaponDAO.existsByName(typeOfWeaponName)) {
             typeOfWeapon = typeOfWeaponDAO.getByName(typeOfWeaponName);
         } else {
-            typeOfWeapon = new TypeOfWeapon();
-            typeOfWeapon.setName(typeOfWeaponName);
-            typeOfWeaponDAO.addEntity(typeOfWeapon);
+            typeOfWeapon = null;
+            System.out.println("doesn't exits");
         }
 
         // Создаем CharacterStats и устанавливаем ссылки на сохраненные сущности
@@ -87,6 +83,6 @@ public class TestCharacterStatTable {
         System.out.println("CharacterStats exists: " + exists);
 
         // Удаляем CharacterStats из базы данных
-        characterStatsDAO.deleteEntity(retrievedCharacterStats.getId());
+//        characterStatsDAO.deleteEntity(retrievedCharacterStats.getId());
     }
 }

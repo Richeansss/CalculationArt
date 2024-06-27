@@ -11,6 +11,7 @@ module com.example.colculationart {
     requires jakarta.persistence;
     requires org.slf4j;
     requires mysql.connector.j;
+    requires org.apache.commons.csv;
 
 
     opens com.example.colculationart to javafx.fxml;

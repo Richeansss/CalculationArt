@@ -28,10 +28,10 @@ public class TestOfDAO {
      * @param args Аргументы командной строки (не используются).
      */
     public static void main(String[] args) {
-        createElements();
+//        createElements();
         createTypeOfWeapons();
         createQuality();
-        createRegion();
+//        createRegion();
     }
 
     /**
@@ -58,7 +58,7 @@ public class TestOfDAO {
      */
     public static void createTypeOfWeapons() {
         TypeOfWeaponDAO typeOfWeaponDAO = new TypeOfWeaponDAO();
-        List<String> typeOfWeaponNames = Arrays.asList("Swords", "Claymores", "Polearms", "Catalysts", "Bows");
+        List<String> typeOfWeaponNames = Arrays.asList("Sword", "Claymore", "Polearm", "Catalyst", "Bow");
 
         for (String name : typeOfWeaponNames) {
             if (!typeOfWeaponDAO.existsByName(name)) {
@@ -77,7 +77,7 @@ public class TestOfDAO {
      */
     public static void createQuality() {
         QualityDAO qualityDAO = new QualityDAO();
-        List<String> qualityNames = Arrays.asList("1 star", "2 star", "3 star", "4 star", "5 star");
+        List<String> qualityNames = Arrays.asList("1 stars", "2 stars", "3 stars", "4 stars", "5 stars");
 
         for (String name : qualityNames) {
             if (!qualityDAO.existsByName(name)) {
