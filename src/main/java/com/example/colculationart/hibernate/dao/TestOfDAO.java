@@ -28,10 +28,10 @@ public class TestOfDAO {
      * @param args Аргументы командной строки (не используются).
      */
     public static void main(String[] args) {
-//        createElements();
+        createElements();
         createTypeOfWeapons();
         createQuality();
-//        createRegion();
+        createRegion();
     }
 
     /**
@@ -39,7 +39,7 @@ public class TestOfDAO {
      */
     public static void createElements() {
         ElementDAO elementDAO = new ElementDAO();
-        List<String> elementNames = Arrays.asList("Electro", "Geo", "Cryo", "Pyro", "Anemo", "Dendro", "Hydro");
+        List<String> elementNames = Arrays.asList("Electro", "Geo", "Cryo", "Pyro", "Anemo", "Dendro", "Hydro", "None");
 
         for (String name : elementNames) {
             if (!elementDAO.existsByName(name)) {
@@ -96,7 +96,7 @@ public class TestOfDAO {
      */
     public static void createRegion() {
         RegionDAO regionDAO = new RegionDAO();
-        List<String> regionNames = Arrays.asList("Mondstadt", "Liyue", "Inazuma", "Sumeru", "Fontaine", "Natlan");
+        List<String> regionNames = Arrays.asList("Mondstadt", "Liyue", "Inazuma", "Sumeru", "Fontaine", "Natlan","Snezhnaya", "None");
 
         for (String name : regionNames) {
             if (!regionDAO.existsByName(name)) {

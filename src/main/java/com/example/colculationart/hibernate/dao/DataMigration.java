@@ -8,11 +8,22 @@ import org.apache.commons.csv.CSVRecord;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.FileReader;
 import java.io.Reader;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
+/**
+ * Класс для выполнения миграции данных из CSV файла в базу данных.
+ */
 public class DataMigration {
+
+    private static final Logger logger = LoggerFactory.getLogger(DataMigration.class);
+
     public static void main(String[] args) {
 
         try (SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
@@ -20,11 +31,14 @@ public class DataMigration {
 
             session.beginTransaction();
 
+            CharacterStatsDAO characterStatsDAO = new CharacterStatsDAO();
             ElementDAO elementDAO = new ElementDAO();
             QualityDAO qualityDAO = new QualityDAO();
             RegionDAO regionDAO = new RegionDAO();
             TypeOfWeaponDAO typeOfWeaponDAO = new TypeOfWeaponDAO();
-            CharacterStatsDAO characterStatsDAO = new CharacterStatsDAO();
+
+            // Получение всех существующих имен CharacterStats
+            Set<String> characterStatsNames = getExistingCharacterNames(characterStatsDAO);
 
             // Чтение данных из CSV
             try (Reader reader = new FileReader("src/main/java/com/example/colculationart/Character.csv");
@@ -40,6 +54,12 @@ public class DataMigration {
                     String weaponName = csvRecord.get("weapon");
                     String regionName = csvRecord.get("region");
 
+                    // Проверка существования записи
+                    if (characterStatsNames.contains(name)) {
+                        logger.info("Запись с именем {} уже существует, пропуск.", name);
+                        continue;
+                    }
+
                     // Найти объекты
                     Element element = elementDAO.getByName(elementName);
                     Quality quality = qualityDAO.getByName(qualityName);
@@ -48,7 +68,7 @@ public class DataMigration {
 
                     // Пропустить запись, если хотя бы одно из значений не найдено
                     if (element == null || quality == null || region == null || typeOfWeapon == null) {
-                        System.out.println("Skipping " + name + " due to missing references.");
+                        logger.warn("Пропуск записи {} из-за отсутствия ссылок.", name);
                         continue;
                     }
 
@@ -64,12 +84,28 @@ public class DataMigration {
                     characterStats.setTypeOfWeapon(typeOfWeapon);
 
                     characterStatsDAO.addEntity(characterStats);
+                    logger.info("Добавлена запись: {}", name);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.error("Ошибка при чтении CSV файла", e);
             }
 
             session.getTransaction().commit();
         }
+    }
+
+    /**
+     * Получает существующие имена всех сущностей CharacterStats и возвращает их в виде HashSet.
+     *
+     * @param characterStatsDAO DAO для работы с CharacterStats.
+     * @return Набор имен всех сущностей CharacterStats.
+     */
+    private static Set<String> getExistingCharacterNames(CharacterStatsDAO characterStatsDAO) {
+        List<CharacterStats> allCharacterStats = characterStatsDAO.getAllEntities();
+        Set<String> characterStatsNames = new HashSet<>();
+        for (CharacterStats characterStats : allCharacterStats) {
+            characterStatsNames.add(characterStats.getName());
+        }
+        return characterStatsNames;
     }
 }
