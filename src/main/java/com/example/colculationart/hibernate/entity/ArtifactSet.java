@@ -17,9 +17,6 @@ public class ArtifactSet {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "description")
-    private String description;
-
     @ManyToMany
     @JoinTable(
             name = "set_rarity",
@@ -27,4 +24,12 @@ public class ArtifactSet {
             inverseJoinColumns = @JoinColumn(name = "rarity_id")
     )
     private Set<ArtifactRarity> allowedRarities;
+
+    @ManyToMany
+    @JoinTable(
+            name = "set_bonus",
+            joinColumns = @JoinColumn(name = "set_id"),
+            inverseJoinColumns = @JoinColumn(name = "bonus_id")
+    )
+    private Set<ArtifactBonus> bonuses;
 }

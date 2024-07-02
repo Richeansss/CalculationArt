@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Getter
 @Setter
 @Entity
@@ -12,11 +14,12 @@ public class ArtifactBonus {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "set_id")
-    private ArtifactSet artifactSet; // Many-to-One relationship with ArtifactSet
+    @Column(name = "bonus_type")
+    private String bonusType;
 
-    @Column(name = "type")
-    private String type; // You can define the type of bonus (e.g., "bonus1", "bonus2", "bonus4")
+    @Column(name = "bonus_description", length = 1000) // Увеличьте длину до 1000 символов
+    private String bonusDescription;
 
+    @ManyToMany(mappedBy = "bonuses")
+    private Set<ArtifactSet> artifactSets;
 }
