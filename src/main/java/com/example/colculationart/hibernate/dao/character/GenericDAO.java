@@ -1,4 +1,4 @@
-package com.example.colculationart.hibernate.dao.onefieldtable;
+package com.example.colculationart.hibernate.dao.character;
 
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;

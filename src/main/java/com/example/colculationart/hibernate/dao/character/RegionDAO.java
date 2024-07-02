@@ -1,4 +1,4 @@
-package com.example.colculationart.hibernate.dao.onefieldtable;
+package com.example.colculationart.hibernate.dao.character;
 
 import com.example.colculationart.hibernate.entity.Region;
 
