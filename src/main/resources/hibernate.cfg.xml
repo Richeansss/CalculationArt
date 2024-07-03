@@ -45,6 +45,7 @@
         <mapping class="com.example.colculationart.hibernate.entity.ArtifactSet"/>
         <mapping class="com.example.colculationart.hibernate.entity.ArtifactRarity"/>
         <mapping class="com.example.colculationart.hibernate.entity.ArtifactBonus"/>
+        <mapping class="com.example.colculationart.hibernate.entity.ArtifactType"/>
 
 
     </session-factory>

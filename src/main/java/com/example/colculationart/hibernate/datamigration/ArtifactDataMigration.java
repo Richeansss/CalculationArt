@@ -3,9 +3,11 @@ package com.example.colculationart.hibernate.datamigration;
 import com.example.colculationart.hibernate.dao.artifact.ArtifactBonusDAO;
 import com.example.colculationart.hibernate.dao.artifact.ArtifactRarityDAO;
 import com.example.colculationart.hibernate.dao.artifact.ArtifactSetDAO;
+import com.example.colculationart.hibernate.dao.artifact.ArtifactTypeDAO;
 import com.example.colculationart.hibernate.entity.ArtifactBonus;
 import com.example.colculationart.hibernate.entity.ArtifactRarity;
 import com.example.colculationart.hibernate.entity.ArtifactSet;
+import com.example.colculationart.hibernate.entity.ArtifactType;
 import com.example.colculationart.hibernate.tables.CreateArtifactTable;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -34,6 +36,8 @@ public class ArtifactDataMigration {
             ArtifactSetDAO artifactSetDAO = new ArtifactSetDAO();
             ArtifactRarityDAO artifactRarityDAO = new ArtifactRarityDAO();
             ArtifactBonusDAO artifactBonusDAO = new ArtifactBonusDAO();
+            ArtifactTypeDAO artifactTypeDAO = new ArtifactTypeDAO();
+
 
             // Чтение CSV и миграция данных
             // Получение всех ArtifactSet из базы данных
@@ -111,6 +115,19 @@ public class ArtifactDataMigration {
                     // Добавление ArtifactSet только если его нет в базе данных
                     artifactSetDAO.addEntity(artifactSet);
                     logger.info("Добавлен ArtifactSet: {}", name);
+
+                    // Добавление типов артефактов
+                    ArtifactType artifactType = new ArtifactType();
+                    artifactType.setArtifactSet(artifactSet);
+                    artifactType.setFlower(csvRecord.get("flower"));
+                    artifactType.setPlume(csvRecord.get("plume"));
+                    artifactType.setSands(csvRecord.get("sands"));
+                    artifactType.setGoblet(csvRecord.get("goblet"));
+                    artifactType.setCirclet(csvRecord.get("circlet"));
+
+                    // Сохранение типа артефактов
+                    artifactTypeDAO.addEntity(artifactType);
+                    logger.info("Добавлен ArtifactType для ArtifactSet '{}'", name);
                 }
             } catch (Exception e) {
                 logger.error("Ошибка при чтении CSV файла", e);
