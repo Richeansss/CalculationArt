@@ -1,6 +1,6 @@
-package com.example.colculationart.hibernate.dao;
+package com.example.colculationart.hibernate.datamigration;
 
-import com.example.colculationart.hibernate.dao.onefieldtable.*;
+import com.example.colculationart.hibernate.dao.character.*;
 import com.example.colculationart.hibernate.entity.*;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -20,9 +20,9 @@ import java.util.Set;
 /**
  * Класс для выполнения миграции данных из CSV файла в базу данных.
  */
-public class DataMigration {
+public class CharacterDataMigration {
 
-    private static final Logger logger = LoggerFactory.getLogger(DataMigration.class);
+    private static final Logger logger = LoggerFactory.getLogger(CharacterDataMigration.class);
 
     public static void main(String[] args) {
 
@@ -41,7 +41,7 @@ public class DataMigration {
             Set<String> characterStatsNames = getExistingCharacterNames(characterStatsDAO);
 
             // Чтение данных из CSV
-            try (Reader reader = new FileReader("src/main/java/com/example/colculationart/Character.csv");
+            try (Reader reader = new FileReader("src/main/java/com/example/colculationart/hibernate/datamigration/Character.csv");
                  CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withFirstRecordAsHeader())) {
 
                 for (CSVRecord csvRecord : csvParser) {

@@ -1,6 +1,6 @@
-package com.example.colculationart.hibernate.dao;
+package com.example.colculationart.hibernate;
 
-import com.example.colculationart.hibernate.dao.onefieldtable.*;
+import com.example.colculationart.hibernate.dao.character.*;
 import com.example.colculationart.hibernate.entity.CharacterStats;
 import com.example.colculationart.hibernate.entity.Element;
 import com.example.colculationart.hibernate.entity.Quality;

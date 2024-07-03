@@ -1,9 +1,9 @@
-package com.example.colculationart.hibernate.dao;
+package com.example.colculationart.hibernate.tables;
 
-import com.example.colculationart.hibernate.dao.onefieldtable.ElementDAO;
-import com.example.colculationart.hibernate.dao.onefieldtable.QualityDAO;
-import com.example.colculationart.hibernate.dao.onefieldtable.RegionDAO;
-import com.example.colculationart.hibernate.dao.onefieldtable.TypeOfWeaponDAO;
+import com.example.colculationart.hibernate.dao.character.ElementDAO;
+import com.example.colculationart.hibernate.dao.character.QualityDAO;
+import com.example.colculationart.hibernate.dao.character.RegionDAO;
+import com.example.colculationart.hibernate.dao.character.TypeOfWeaponDAO;
 import com.example.colculationart.hibernate.entity.Element;
 import com.example.colculationart.hibernate.entity.Quality;
 import com.example.colculationart.hibernate.entity.Region;
@@ -18,9 +18,9 @@ import java.util.List;
 /**
  * Утилитарный класс для тестирования операций DAO.
  */
-public class TestOfDAO {
+public class CreateCharacterTable {
 
-    private static final Logger logger = LoggerFactory.getLogger(TestOfDAO.class);
+    private static final Logger logger = LoggerFactory.getLogger(CreateCharacterTable.class);
 
     /**
      * Основной метод для тестирования операций DAO.
