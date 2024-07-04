@@ -5,6 +5,4 @@ import com.example.colculationart.hibernate.entity.ArtifactSet;
 
 public class ArtifactSetDAO extends GenericDAO<ArtifactSet> {
     public ArtifactSetDAO() {super(ArtifactSet.class);}
-
-
 }
