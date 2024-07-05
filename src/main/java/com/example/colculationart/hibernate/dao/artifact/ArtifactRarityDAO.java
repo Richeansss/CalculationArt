@@ -14,22 +14,42 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Класс DAO (Data Access Object) для управления сущностью {@link ArtifactRarity}.
+ * Наследует базовый класс {@link GenericDAO}, предоставляя методы для выполнения CRUD-операций.
+ */
 public class ArtifactRarityDAO extends GenericDAO<ArtifactRarity> {
+
+    /**
+     * Логгер для записи логов.
+     */
+    private static final Logger logger = LoggerFactory.getLogger(ArtifactRarityDAO.class);
+
+    /**
+     * Фабрика сессий для взаимодействия с базой данных.
+     */
+    private static final SessionFactory sessionFactory;
+
+    /**
+     * Конструктор, вызывающий конструктор базового класса {@link GenericDAO} с классом сущности {@link ArtifactRarity}.
+     */
     public ArtifactRarityDAO() {
         super(ArtifactRarity.class);
     }
 
-    private static final Logger logger = LoggerFactory.getLogger(ArtifactRarityDAO.class);
-    private static final SessionFactory sessionFactory;
-
     static {
         try {
+            // Создание реестра сервисов
             StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                     .configure("hibernate.cfg.xml")
                     .build();
+
+            // Создание метаданных
             Metadata metadata = new MetadataSources(registry)
                     .getMetadataBuilder()
                     .build();
+
+            // Создание фабрики сессий
             sessionFactory = metadata.getSessionFactoryBuilder().build();
         } catch (Exception ex) {
             logger.error("Initial SessionFactory creation failed", ex);
@@ -37,6 +57,12 @@ public class ArtifactRarityDAO extends GenericDAO<ArtifactRarity> {
         }
     }
 
+    /**
+     * Проверяет, существует ли сущность {@link ArtifactRarity} с заданным уровнем.
+     *
+     * @param level Уровень, по которому выполняется проверка.
+     * @return {@code true}, если сущность с заданным уровнем существует, иначе {@code false}.
+     */
     public boolean existsByLevel(Integer level) {
         try (Session session = sessionFactory.openSession()) {
             CriteriaBuilder builder = session.getCriteriaBuilder();
