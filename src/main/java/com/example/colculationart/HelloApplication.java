@@ -35,9 +35,10 @@ public class HelloApplication extends Application {
      */
     @Override
     public void start(Stage stage) {
-        Connection connection = null;
-        try {
-            connection = DatabaseConnection.getConnection();
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            if (connection == null) {
+                return;
+            }
 
             boolean hasRecords = hasRecordsInHeroesTable(connection);
 
@@ -55,14 +56,10 @@ public class HelloApplication extends Application {
             stage.show();
         } catch (IOException e) {
             logger.error("Произошла ошибка при запуске приложения", e);
-        } finally {
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    logger.error("Не удалось закрыть соединение с базой данных", e);
-                }
-            }
+            AlertUtils.showError("Ошибка запуска", "Произошла ошибка при запуске приложения: " + e.getMessage());
+        } catch (SQLException e) {
+            logger.error("Не удалось закрыть соединение с базой данных", e);
+            AlertUtils.showError("Ошибка базы данных", "Не удалось закрыть соединение с базой данных: " + e.getMessage());
         }
     }
 
@@ -86,6 +83,7 @@ public class HelloApplication extends Application {
                 logger.info("Таблица 'heroes' не существует");
             } else {
                 logger.error("Ошибка при проверке записей в таблице 'heroes'", e);
+                AlertUtils.showError("Ошибка базы данных", "Ошибка при проверке записей в таблице 'heroes': " + e.getMessage());
             }
         }
 

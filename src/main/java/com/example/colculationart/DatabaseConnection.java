@@ -45,6 +45,7 @@ public class DatabaseConnection {
             return DriverManager.getConnection(url, username, password);
         } catch (SQLException e) {
             logger.error("Не удалось подключиться к базе данных: {}", e.getMessage(), e);
+            AlertUtils.showError("Ошибка подключения", "Не удалось подключиться к базе данных: " + e.getMessage());
             return null;
         }
     }
