@@ -1,4 +1,4 @@
-package com.example.colculationart;
+package com.example.colculationart.utils;
 
 import javafx.application.Platform;
 import javafx.scene.control.Alert;

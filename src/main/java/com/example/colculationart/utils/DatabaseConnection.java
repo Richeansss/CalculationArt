@@ -1,4 +1,4 @@
-package com.example.colculationart;
+package com.example.colculationart.utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

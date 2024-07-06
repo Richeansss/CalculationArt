@@ -34,18 +34,18 @@
         <property name="hibernate.dbcp.maxWaitMillis">-1</property>
 
         <!-- Mapping class -->
-        <mapping class="com.example.colculationart.hibernate.entity.CharacterStats" />
-        <mapping class="com.example.colculationart.hibernate.entity.StatsAscensionValues"/>
+        <mapping class="com.example.colculationart.hibernate.entity.character.CharacterStats" />
+        <mapping class="com.example.colculationart.hibernate.entity.character.StatsAscensionValues"/>
 
         <mapping class="com.example.colculationart.hibernate.entity.TypeOfWeapon"/>
         <mapping class="com.example.colculationart.hibernate.entity.Element"/>
         <mapping class="com.example.colculationart.hibernate.entity.Quality"/>
         <mapping class="com.example.colculationart.hibernate.entity.Region"/>
 
-        <mapping class="com.example.colculationart.hibernate.entity.ArtifactSet"/>
-        <mapping class="com.example.colculationart.hibernate.entity.ArtifactRarity"/>
-        <mapping class="com.example.colculationart.hibernate.entity.ArtifactBonus"/>
-        <mapping class="com.example.colculationart.hibernate.entity.ArtifactType"/>
+        <mapping class="com.example.colculationart.hibernate.entity.artifact.ArtifactSet"/>
+        <mapping class="com.example.colculationart.hibernate.entity.artifact.ArtifactRarity"/>
+        <mapping class="com.example.colculationart.hibernate.entity.artifact.ArtifactBonus"/>
+        <mapping class="com.example.colculationart.hibernate.entity.artifact.ArtifactType"/>
 
 
     </session-factory>

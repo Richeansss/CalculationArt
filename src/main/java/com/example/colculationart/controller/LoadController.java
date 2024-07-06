@@ -1,8 +1,8 @@
 package com.example.colculationart.controller;
 
-import com.example.colculationart.DatabaseConnection;
-import com.example.colculationart.ParserHtml;
-import com.example.colculationart.ProgressBarUpdater;
+import com.example.colculationart.utils.DatabaseConnection;
+import com.example.colculationart.parser.ParserHtml;
+import com.example.colculationart.utils.ProgressBarUpdater;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -86,7 +86,7 @@ public class LoadController implements ProgressBarUpdater {
     private void openNewPage() {
         try {
             // Загрузка FXML-файла новой страницы
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("insertArt-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/colculationart/insertArt-view.fxml"));
             Parent root = loader.load();
 
             // Создание новой сцены

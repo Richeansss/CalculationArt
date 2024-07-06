@@ -1,5 +1,9 @@
-package com.example.colculationart;
+package com.example.colculationart.parser;
 
+import com.example.colculationart.DataBaseHandler;
+import com.example.colculationart.HMap;
+import com.example.colculationart.Tables;
+import com.example.colculationart.utils.ProgressBarUpdater;
 import lombok.Setter;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

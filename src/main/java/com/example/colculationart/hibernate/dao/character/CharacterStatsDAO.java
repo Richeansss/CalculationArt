@@ -1,6 +1,6 @@
 package com.example.colculationart.hibernate.dao.character;
 
-import com.example.colculationart.hibernate.entity.CharacterStats;
+import com.example.colculationart.hibernate.entity.character.CharacterStats;
 
 /**
  * DAO для выполнения CRUD операций с сущностью CharacterStats.

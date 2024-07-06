@@ -1,5 +1,7 @@
 package com.example.colculationart;
 
+import com.example.colculationart.utils.AlertUtils;
+import com.example.colculationart.utils.DatabaseConnection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -83,7 +85,6 @@ public class HelloApplication extends Application {
                 logger.info("Таблица 'heroes' не существует");
             } else {
                 logger.error("Ошибка при проверке записей в таблице 'heroes'", e);
-                AlertUtils.showError("Ошибка базы данных", "Ошибка при проверке записей в таблице 'heroes': " + e.getMessage());
             }
         }
 

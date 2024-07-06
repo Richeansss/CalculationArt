@@ -1,4 +1,4 @@
-package com.example.colculationart;
+package com.example.colculationart.parser;
 
 import org.apache.commons.io.FileUtils;
 import org.jsoup.Connection;

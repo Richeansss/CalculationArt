@@ -1,5 +1,9 @@
-package com.example.colculationart.hibernate.entity;
+package com.example.colculationart.hibernate.entity.character;
 
+import com.example.colculationart.hibernate.entity.Element;
+import com.example.colculationart.hibernate.entity.Quality;
+import com.example.colculationart.hibernate.entity.Region;
+import com.example.colculationart.hibernate.entity.TypeOfWeapon;
 import lombok.Getter;
 import lombok.Setter;
 import jakarta.persistence.*;

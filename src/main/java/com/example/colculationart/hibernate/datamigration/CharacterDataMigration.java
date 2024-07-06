@@ -2,6 +2,7 @@ package com.example.colculationart.hibernate.datamigration;
 
 import com.example.colculationart.hibernate.dao.character.*;
 import com.example.colculationart.hibernate.entity.*;
+import com.example.colculationart.hibernate.entity.character.CharacterStats;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;

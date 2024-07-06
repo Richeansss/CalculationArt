@@ -1,7 +1,7 @@
 package com.example.colculationart.hibernate;
 
 import com.example.colculationart.hibernate.dao.character.*;
-import com.example.colculationart.hibernate.entity.CharacterStats;
+import com.example.colculationart.hibernate.entity.character.CharacterStats;
 import com.example.colculationart.hibernate.entity.Element;
 import com.example.colculationart.hibernate.entity.Quality;
 import com.example.colculationart.hibernate.entity.Region;

@@ -1,7 +1,7 @@
 package com.example.colculationart.controller;
 
 import com.example.colculationart.DataBaseHandler;
-import com.example.colculationart.DatabaseConnection;
+import com.example.colculationart.utils.DatabaseConnection;
 import com.example.colculationart.HMap;
 import com.example.colculationart.Tables;
 import javafx.fxml.FXML;
@@ -21,7 +21,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Objects;
 
-import static com.example.colculationart.DatabaseConnection.getConnection;
+import static com.example.colculationart.utils.DatabaseConnection.getConnection;
 
 
 public class HelloController {

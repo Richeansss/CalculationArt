@@ -1,4 +1,4 @@
-package com.example.colculationart.hibernate.entity;
+package com.example.colculationart.hibernate.entity.character;
 
 import lombok.Getter;
 import lombok.Setter;

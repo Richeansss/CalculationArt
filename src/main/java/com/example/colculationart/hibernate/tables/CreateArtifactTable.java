@@ -1,7 +1,7 @@
 package com.example.colculationart.hibernate.tables;
 
 import com.example.colculationart.hibernate.dao.artifact.ArtifactRarityDAO;
-import com.example.colculationart.hibernate.entity.ArtifactRarity;
+import com.example.colculationart.hibernate.entity.artifact.ArtifactRarity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
