@@ -1,9 +1,0 @@
-Best Weapon	Elegy for the End	
-Replacement Weapons	1. Favonius Warbow 2. Sacrificial Bow	
-Best Artifacts	Husk of Opulent Dreams x2 Emblem of Severed Fate x2	
-Main Stats	Sands: DEF% or Energy Recharge	
-Goblet: DEF%	
-Circlet: DEF%	
-Substats	DEF%, Energy Recharge, CRIT Rate	
-Geo Support
-
