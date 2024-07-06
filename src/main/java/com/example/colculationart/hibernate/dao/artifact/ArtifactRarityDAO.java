@@ -1,7 +1,7 @@
 package com.example.colculationart.hibernate.dao.artifact;
 
 import com.example.colculationart.hibernate.dao.character.GenericDAO;
-import com.example.colculationart.hibernate.entity.ArtifactRarity;
+import com.example.colculationart.hibernate.entity.artifact.ArtifactRarity;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;

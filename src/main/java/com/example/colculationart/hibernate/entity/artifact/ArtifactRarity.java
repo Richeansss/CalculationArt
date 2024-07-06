@@ -1,4 +1,4 @@
-package com.example.colculationart.hibernate.entity;
+package com.example.colculationart.hibernate.entity.artifact;
 
 import jakarta.persistence.*;
 import lombok.Getter;
