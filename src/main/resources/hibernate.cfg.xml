@@ -41,11 +41,14 @@
         <mapping class="com.example.colculationart.hibernate.entity.Element"/>
         <mapping class="com.example.colculationart.hibernate.entity.Quality"/>
         <mapping class="com.example.colculationart.hibernate.entity.Region"/>
+        <mapping class="com.example.colculationart.hibernate.entity.StatsName"/>
+
 
         <mapping class="com.example.colculationart.hibernate.entity.artifact.ArtifactSet"/>
         <mapping class="com.example.colculationart.hibernate.entity.artifact.ArtifactRarity"/>
         <mapping class="com.example.colculationart.hibernate.entity.artifact.ArtifactBonus"/>
         <mapping class="com.example.colculationart.hibernate.entity.artifact.ArtifactType"/>
+
 
 
     </session-factory>
